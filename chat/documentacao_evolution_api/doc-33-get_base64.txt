@@ -1,0 +1,48 @@
+Aqui está a documentação completa em formato Markdown para a página "Get Base64" da Evolution API:
+
+MarkDown
+
+# Get Base64 - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para obter a representação em base64 de uma mensagem de mídia usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/chat/getBase64FromMediaMessage/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/chat/getBase64FromMediaMessage/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "message": {
+      "key": {
+        "id": "<string>"
+      }
+    },
+    "convertToMp4": true
+  }'
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância de chat.
+Tipo de Body
+application/json
+Resposta
+Sucesso (200)
+
+JSON
+
+{
+  "base64": "<string>"
+}
+Descrição da Resposta
+base64: A representação em base64 da mídia solicitada.

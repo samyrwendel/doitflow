@@ -1,0 +1,46 @@
+Aqui está a documentação completa em formato Markdown para a página "Find Chats" da Evolution API:
+
+MarkDown
+
+# Find Chats - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para buscar chats disponíveis usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/chat/findChats/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/chat/findChats/{instance} \
+  --header 'apikey: <api-key>'
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância de chat.
+Tipo de Body
+application/json (nenhum dado no corpo é requerido para esta solicitação).
+Resposta
+A resposta será em formato JSON, contendo os chats encontrados. Por exemplo:
+
+JSON
+
+{
+  "chats": [
+    {
+      "id": "123456789@s.whatsapp.net",
+      "name": "Chat Group",
+      "lastMessage": "Hi there!",
+      "timestamp": "2023-01-01T00:00:00Z"
+    }
+  ]
+}
+Descrição da Resposta
+chats: Uma lista de objetos contendo informações sobre os chats, incluindo id, name, lastMessage, e timestamp.

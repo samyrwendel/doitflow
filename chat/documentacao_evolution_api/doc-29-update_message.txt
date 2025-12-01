@@ -1,0 +1,41 @@
+Aqui está a documentação completa em formato Markdown para a página "Update Message" da Evolution API:
+
+MarkDown
+
+# Update Message - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para atualizar o texto de uma mensagem existente em um chat usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/chat/updateMessage/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/chat/updateMessage/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "number": 123,
+    "text": "<string>",
+    "key": {
+      "remoteJid": "<string>",
+      "fromMe": true,
+      "id": "<string>"
+    }
+  }'
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância de chat.
+Tipo de Body
+application/json
+Resposta
+A resposta será uma confirmação da atualização da mensagem, embora a estrutura exata do corpo de resposta não esteja especificada.

@@ -1,0 +1,1087 @@
+{
+  "messages": [
+    {
+      "id": "3EB02F1C1D7B2B9B8EF423EDD39CEF97BCDE65DD",
+      "remoteJid": "556791257171@s.whatsapp.net",
+      "body": "✅ TESTE FINAL - ACK corrigido!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-18T15:45:52.048Z",
+      "updatedAt": "2025-09-18T18:25:40.523Z"
+    },
+    {
+      "id": "3EB06D2ED26495096BFAC886F9DD46EB35105282",
+      "remoteJid": "556791257171@s.whatsapp.net",
+      "body": "🔥 TESTE ACK - 15:47",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-18T15:47:13.461Z",
+      "updatedAt": "2025-09-18T18:25:40.549Z"
+    },
+    {
+      "id": "3EB006664FFE897C0E94671B60E4414A759269EF",
+      "remoteJid": "5567991257171",
+      "body": "teste 6t",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-18T16:03:55.974Z",
+      "updatedAt": "2025-09-18T18:25:41.184Z"
+    },
+    {
+      "id": "3EB06141859117C19CC2C3D8B9D7642EE163358B",
+      "remoteJid": "5567991257171",
+      "body": "teste 7",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-18T16:26:15.622Z",
+      "updatedAt": "2025-09-18T18:25:41.481Z"
+    },
+    {
+      "id": "3EB0476E9E7D5A32E7E62ABFCEC35D9F4AC21A97",
+      "remoteJid": "5511997252150",
+      "body": "Olá! 😊 Estou compartilhando com você a nossa incrível virtiri 10! 🚀🌟",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-18T16:57:50.480Z",
+      "updatedAt": "2025-09-18T19:05:18.270Z"
+    },
+    {
+      "id": "3EB0941EA10470A694F69610E54166CC9FF7D474",
+      "remoteJid": "5567991255010",
+      "body": "teste 1",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-18T18:31:18.065Z",
+      "updatedAt": "2025-09-18T19:05:18.956Z"
+    },
+    {
+      "id": "3EB0EE8F50145673CE10AC1C55F1EE49E5E1D258",
+      "remoteJid": "5567991257171",
+      "body": "teste 6",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-18T18:34:33.009Z",
+      "updatedAt": "2025-09-18T19:05:18.984Z"
+    },
+    {
+      "id": "3EB0EFBDC7CBC57141D12305B612DA53551D40B7",
+      "remoteJid": "5567991255010",
+      "body": "teste 2",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-18T18:56:36.409Z",
+      "updatedAt": "2025-09-18T19:05:19.014Z"
+    },
+    {
+      "id": "3EB04A292E88BF146CC0E292A2F3362842833B66",
+      "remoteJid": "5567991255010",
+      "body": "teste 3",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-18T19:26:16.117Z",
+      "updatedAt": "2025-09-19T13:56:09.532Z"
+    },
+    {
+      "id": "3EB05E400ABDF8B312C1C15C4388D47475090428",
+      "remoteJid": "5567991257171",
+      "body": "teste 7",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-18T19:48:38.007Z",
+      "updatedAt": "2025-09-19T13:56:09.551Z"
+    },
+    {
+      "id": "3EB08DAEBA807C2DC8A9BC384071D8C96ABF9246",
+      "remoteJid": "5567991257171",
+      "body": "teste",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T14:38:15.389Z",
+      "updatedAt": "2025-09-19T14:45:38.549Z",
+      "deliveredAt": "2025-09-19T14:38:15.948Z",
+      "readAt": "2025-09-19T14:38:26.261Z"
+    },
+    {
+      "id": "3EB0D1B207D812444F6D0F2F9B19B856E381B8CD",
+      "remoteJid": "5567991257171",
+      "body": "Oi Cleversson! Esta é uma mensagem de teste. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T14:45:16.183Z",
+      "updatedAt": "2025-09-19T14:45:38.554Z",
+      "deliveredAt": "2025-09-19T14:45:16.755Z",
+      "readAt": "2025-09-19T14:45:19.179Z"
+    },
+    {
+      "id": "3EB089064540941B31332787076F266646C8F40D",
+      "remoteJid": "5567999283800",
+      "body": "Oi, Angela! Estou enviando uma mensagem para testar. 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T14:45:29.942Z",
+      "updatedAt": "2025-09-25T19:04:13.364Z",
+      "deliveredAt": "2025-09-19T14:45:31.348Z",
+      "readAt": "2025-09-19T14:46:23.932Z"
+    },
+    {
+      "id": "3EB00D54171144BB8A0730A5C356ACCB909094E5",
+      "remoteJid": "5567992843009",
+      "body": "Oi Aline! Só estou fazendo um teste por aqui. 😊",
+      "status": "READ",
+      "timestamp": "2025-09-19T14:45:39.510Z",
+      "updatedAt": "2025-09-19T14:53:10.426Z",
+      "deliveredAt": "2025-09-19T14:45:39.988Z",
+      "readAt": "2025-09-19T14:53:10.426Z"
+    },
+    {
+      "id": "3EB00B561234403A5AE3CA6278389A94801BCCF8",
+      "remoteJid": "5567991257171",
+      "body": "Bom dia, Clevers! Dê uma olhada na *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T14:52:24.211Z",
+      "updatedAt": "2025-09-19T14:53:06.493Z",
+      "readAt": "2025-09-19T14:52:50.738Z"
+    },
+    {
+      "id": "3EB06F5AF189836BB23F3DA6D6C1BAFC32D47715",
+      "remoteJid": "5567999283800",
+      "body": "Bom dia, Angela! Dê uma olhada na *VITRINE 10*. 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T14:52:51.960Z",
+      "updatedAt": "2025-09-25T19:04:16.548Z",
+      "readAt": "2025-09-19T14:52:56.060Z",
+      "deliveredAt": "2025-09-19T18:09:15.449Z"
+    },
+    {
+      "id": "3EB07E806D51895D321ACE265F82BA8E0C3610B6",
+      "remoteJid": "5567992843009",
+      "body": "Bom dia, Aline! Dê uma olhadinha na *VITRINE 10*. 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T14:53:12.131Z",
+      "updatedAt": "2025-10-02T18:14:03.908Z",
+      "deliveredAt": "2025-10-02T18:14:03.908Z"
+    },
+    {
+      "id": "3EB0B7401B2CC3AA2FDB66266AF3B661A6105455",
+      "remoteJid": "5567998008378",
+      "body": "Bom dia, Carla! 😊 Dê uma olhada na nossa nova *VITRINE 10*!",
+      "status": "READ",
+      "timestamp": "2025-09-19T14:56:34.078Z",
+      "updatedAt": "2025-09-19T15:21:39.689Z",
+      "readAt": "2025-09-19T15:21:39.689Z"
+    },
+    {
+      "id": "3EB0C6369A2F83E6A41FCB184EF2C0E641CFC955",
+      "remoteJid": "5567998604242",
+      "body": "Bom dia, Glaucia! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T14:56:57.647Z",
+      "updatedAt": "2025-09-24T11:21:46.181Z",
+      "deliveredAt": "2025-09-19T15:03:20.150Z"
+    },
+    {
+      "id": "3EB00549E0C8658C952157ADF4B821902EDF5D35",
+      "remoteJid": "5567999624619",
+      "body": "Bom dia, Eliane! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T14:57:22.520Z",
+      "updatedAt": "2025-09-19T14:57:23.367Z"
+    },
+    {
+      "id": "3EB08CA8886DF9E0740ACFFC79769504FED2C345",
+      "remoteJid": "5567991333934",
+      "body": "Bom dia, Dulce! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T14:57:40.609Z",
+      "updatedAt": "2025-09-19T14:58:10.122Z"
+    },
+    {
+      "id": "3EB0289E92CB1D968FE324BC30FA863BC6AEC40F",
+      "remoteJid": "5567992081667",
+      "body": "Bom dia, Marcilene! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "READ",
+      "timestamp": "2025-09-19T14:58:08.004Z",
+      "updatedAt": "2025-09-19T15:43:31.157Z",
+      "deliveredAt": "2025-09-19T14:58:08.016Z",
+      "readAt": "2025-09-19T15:43:31.157Z"
+    },
+    {
+      "id": "3EB020D725E3D249B4EE66B554C1A5971C1EFED8",
+      "remoteJid": "5567981595393",
+      "body": "Bom dia, Luzia! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T14:58:32.227Z",
+      "updatedAt": "2025-09-19T17:07:46.887Z",
+      "deliveredAt": "2025-09-19T14:58:34.603Z"
+    },
+    {
+      "id": "3EB007E823E97146DECFB3E53D70661E2FA4B5A4",
+      "remoteJid": "5567981646191",
+      "body": "Bom dia, Anderson! Dê uma olhadinha na nossa nova *VITRINE 10*. 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T14:59:02.555Z",
+      "updatedAt": "2025-09-19T14:59:12.581Z",
+      "deliveredAt": "2025-09-19T14:59:12.581Z"
+    },
+    {
+      "id": "3EB05FAF1823B901F0AD8F73B52F5F53E4D2C0F5",
+      "remoteJid": "5567999672524",
+      "body": "Bom dia, Krizzia! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "sent",
+      "timestamp": "2025-09-19T14:59:20.042Z"
+    },
+    {
+      "id": "3EB008E3C164FA422EFD57205D4D1ECD686CA3A4",
+      "remoteJid": "5567998739494",
+      "body": "Bom dia, Ana! 🌟 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T14:59:36.675Z",
+      "updatedAt": "2025-09-19T14:59:50.623Z"
+    },
+    {
+      "id": "3EB083A3706FC1D8C93E0341070E609343DEB178",
+      "remoteJid": "5567998087103",
+      "body": "Bom dia, Cristiane! 🌟 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T14:59:54.509Z",
+      "updatedAt": "2025-09-19T15:12:59.970Z",
+      "deliveredAt": "2025-09-19T15:12:59.970Z"
+    },
+    {
+      "id": "3EB0E904410C5F9565C80CF9453E7A42CA2D9A55",
+      "remoteJid": "5567991058635",
+      "body": "Bom dia, Lais! Dê uma olhadinha na nossa nova *VITRINE 10*! 🌟",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:00:08.661Z",
+      "updatedAt": "2025-09-19T15:00:10.963Z"
+    },
+    {
+      "id": "3EB0AF6D19578973605629015D46811DBC2335C8",
+      "remoteJid": "5567999444825",
+      "body": "Bom dia, Beatriz! Dê uma olhadinha na nossa nova *VITRINE 10*! 🌟",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:00:34.547Z",
+      "updatedAt": "2025-09-23T23:32:08.235Z",
+      "deliveredAt": "2025-09-19T15:00:36.895Z"
+    },
+    {
+      "id": "3EB0801E2404FFFC63FAC7E63E37C3876FEDA4AC",
+      "remoteJid": "5567998295480",
+      "body": "Bom dia, Cristina! Dê uma olhadinha na nossa nova *VITRINE 10* 🚀",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:00:56.095Z",
+      "updatedAt": "2025-09-19T15:00:59.169Z",
+      "deliveredAt": "2025-09-19T15:00:56.185Z"
+    },
+    {
+      "id": "3EB0C0FA7884B80678B5B22C0E321A9D46F987A2",
+      "remoteJid": "5567996971422",
+      "body": "Bom dia, Ariane! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:01:19.903Z",
+      "updatedAt": "2025-09-19T15:03:01.857Z",
+      "deliveredAt": "2025-09-19T15:01:20.174Z"
+    },
+    {
+      "id": "3EB0EE752147956B10FF1E0FD27EE041C2E82FA3",
+      "remoteJid": "5567999498831",
+      "body": "Bom dia, Laize! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:01:36.383Z",
+      "updatedAt": "2025-09-19T15:03:01.882Z"
+    },
+    {
+      "id": "3EB05BA838391C09A286A2EE1EC18DCB10469D34",
+      "remoteJid": "5567998057134",
+      "body": "Bom dia, Carlos! Dê uma olhadinha na nossa nova *VITRINE 10* 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:01:57.386Z",
+      "updatedAt": "2025-09-19T15:03:01.987Z",
+      "deliveredAt": "2025-09-19T15:01:57.832Z"
+    },
+    {
+      "id": "3EB0B746DA1E2B6CB1DFB9D03D1800574B1E519A",
+      "remoteJid": "5567999427796",
+      "body": "Bom dia, Rosimar! Dê uma olhadinha na nossa nova *VITRINE 10*! 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:02:13.038Z",
+      "updatedAt": "2025-09-19T15:03:02.065Z"
+    },
+    {
+      "id": "3EB09839467F5C9B44DBA67D3AE4A7B0B5CB60F8",
+      "remoteJid": "5567992544033",
+      "body": "Bom dia, Jessica! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:02:33.851Z",
+      "updatedAt": "2025-09-19T15:03:02.085Z"
+    },
+    {
+      "id": "3EB01D981C880F9C5F81167EED0C2463EC8C70CD",
+      "remoteJid": "5567992019605",
+      "body": "Bom dia, Jacqueline! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:02:54.041Z",
+      "updatedAt": "2025-09-19T15:03:02.096Z",
+      "deliveredAt": "2025-09-19T15:02:55.536Z"
+    },
+    {
+      "id": "3EB0BFD89D31CA59E8C9C94BBBDC891555594A60",
+      "remoteJid": "5567996000790",
+      "body": "Bom dia, Kamirys! Dê uma olhadinha na nossa nova *VITRINE 10*! 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:03:15.442Z",
+      "updatedAt": "2025-09-19T15:03:45.804Z"
+    },
+    {
+      "id": "3EB009928AE39CE7BF145AD71576429AB3130F79",
+      "remoteJid": "5567999036506",
+      "body": "Bom dia, Jeska! 🌟 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:03:41.177Z",
+      "updatedAt": "2025-09-19T15:03:46.393Z"
+    },
+    {
+      "id": "3EB09C79AA5791868168942462579B874253AC44",
+      "remoteJid": "5567992846571",
+      "body": "Bom dia, Sarah! Dê uma olhadinha na nossa nova *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:04:08.316Z",
+      "updatedAt": "2025-09-19T15:06:14.633Z"
+    },
+    {
+      "id": "3EB08AD8B7E222F8B8E82890DF81FAE373B3233E",
+      "remoteJid": "5567993311116",
+      "body": "Bom dia, Joecinaria! 🌟 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:04:34.380Z",
+      "updatedAt": "2025-09-19T15:06:14.814Z"
+    },
+    {
+      "id": "3EB0BF442604B2C0CB312115CEE58F0628C8875F",
+      "remoteJid": "5567998889262",
+      "body": "Bom dia, Victor! Dê uma olhada na nossa nova *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:04:58.049Z",
+      "updatedAt": "2025-09-19T15:06:14.841Z"
+    },
+    {
+      "id": "3EB02E1384DAB2F41D48B1B604120368A7ACBA31",
+      "remoteJid": "5567992204955",
+      "body": "Bom dia, Luan! Dê uma olhadinha na nossa nova *VITRINE 10*. 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:05:21.345Z",
+      "updatedAt": "2025-10-01T00:13:25.520Z",
+      "deliveredAt": "2025-10-01T00:13:25.520Z"
+    },
+    {
+      "id": "3EB00FE563ECF5D43977009EB8A8D266EADBFAA8",
+      "remoteJid": "5567981422122",
+      "body": "Bom dia, Ivone! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:05:47.887Z",
+      "updatedAt": "2025-09-19T15:06:14.968Z"
+    },
+    {
+      "id": "3EB0AB529B4B86215DE28C3890C30D90B24AF554",
+      "remoteJid": "5567992012009",
+      "body": "Bom dia, Eunice! ☀️ Dê uma olhadinha na nossa nova *VITRINE 10*.",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:06:13.907Z"
+    },
+    {
+      "id": "3EB0AF978118E34C9E6CB5C98341806C651AD250",
+      "remoteJid": "5567996750029",
+      "body": "Bom dia, Edilaine! Dê uma olhadinha na nossa nova *VITRINE 10* 😊.",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:06:35.669Z"
+    },
+    {
+      "id": "3EB0F8A33EE4AF96A3F8E781AB895DBB2DC2DBAB",
+      "remoteJid": "5567981270198",
+      "body": "Bom dia, Caroline! Dê uma olhada na nossa nova *VITRINE 10*! 🌟",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:06:54.175Z",
+      "updatedAt": "2025-09-19T15:07:35.250Z"
+    },
+    {
+      "id": "3EB0ED545ED49AAD9ABF58D3481CD81AF8B65D99",
+      "remoteJid": "5567981541583",
+      "body": "Bom dia, Aneilma! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:07:19.378Z",
+      "updatedAt": "2025-09-19T18:00:49.692Z",
+      "deliveredAt": "2025-09-19T18:00:49.692Z"
+    },
+    {
+      "id": "3EB0024BBFF267DF82A5A3A3A4E7B1189500245C",
+      "remoteJid": "5567998586233",
+      "body": "Bom dia, Vilmara! Dê uma olhadinha na nossa nova *VITRINE 10* 🌟",
+      "status": "READ",
+      "timestamp": "2025-09-19T15:07:48.824Z",
+      "updatedAt": "2025-09-19T22:09:51.445Z",
+      "deliveredAt": "2025-09-19T15:07:50.520Z",
+      "readAt": "2025-09-19T22:09:51.445Z"
+    },
+    {
+      "id": "3EB0BB326C7EE78E91E57641FD4E68D43E3AA946",
+      "remoteJid": "5567935008159",
+      "body": "Bom dia, Patrícia! Dê uma olhadinha na nossa nova *VITRINE 10*! 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:08:08.302Z",
+      "updatedAt": "2025-09-19T15:13:11.404Z",
+      "deliveredAt": "2025-09-19T15:13:11.404Z"
+    },
+    {
+      "id": "3EB0AD71DE2088FB29EFDAE75D7F47648F9E841C",
+      "remoteJid": "5567991004041",
+      "body": "Bom dia, Milene! Dê uma olhadinha na nossa nova *VITRINE 10* 🌟",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:08:35.389Z",
+      "updatedAt": "2025-09-19T16:31:31.421Z",
+      "deliveredAt": "2025-09-19T15:08:37.964Z"
+    },
+    {
+      "id": "3EB00633E9F8D340AA657E214F82D15D5DCD4CC7",
+      "remoteJid": "5567998213724",
+      "body": "Bom dia, Cinara! Dê uma olhadinha na nossa nova *VITRINE 10* 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:09:01.412Z",
+      "updatedAt": "2025-09-19T15:09:49.368Z"
+    },
+    {
+      "id": "3EB0D3ED8BC252C5AE081A6AB9E6074A0AFC594F",
+      "remoteJid": "5567991818969",
+      "body": "Bom dia, Ingrid! 😊 Dê uma olhada na nossa nova *VITRINE 10*!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:09:18.270Z",
+      "updatedAt": "2025-09-19T16:26:13.426Z",
+      "deliveredAt": "2025-09-19T16:26:13.426Z"
+    },
+    {
+      "id": "3EB0D54F40C2BF44919273E3D084ECF2F9A3519C",
+      "remoteJid": "5567996658434",
+      "body": "Bom dia, Thaila! Dê uma olhadinha na nossa nova *VITRINE 10*! 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:09:40.262Z",
+      "updatedAt": "2025-09-19T15:09:49.551Z"
+    },
+    {
+      "id": "3EB0B088FB16E26047796C1B598C2D7F19CAE4DF",
+      "remoteJid": "5567999976250",
+      "body": "Bom dia, Iasmin! Dê uma olhadinha na nossa nova *VITRINE 10* 🌟",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:10:00.916Z",
+      "updatedAt": "2025-09-19T15:13:24.691Z",
+      "deliveredAt": "2025-09-19T15:10:01.201Z"
+    },
+    {
+      "id": "3EB0FE674C889D61B60C0C746D12ED9F3AE52E05",
+      "remoteJid": "5567984537752",
+      "body": "Bom dia, Yasmin! 🌟 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:10:16.983Z",
+      "updatedAt": "2025-09-19T15:18:51.874Z",
+      "deliveredAt": "2025-09-19T15:18:51.874Z"
+    },
+    {
+      "id": "3EB02DCC6BD073AD67F0F7BF782B9B0A38EC5129",
+      "remoteJid": "5567999590773",
+      "body": "Bom dia, Jovelina! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:10:40.240Z",
+      "updatedAt": "2025-09-19T15:13:24.734Z",
+      "deliveredAt": "2025-09-19T15:10:40.530Z"
+    },
+    {
+      "id": "3EB00B05EEB72F98817F00266ED19A7A1026FD2B",
+      "remoteJid": "5567984160607",
+      "body": "Bom dia, Rufina! Dê uma olhadinha na nossa nova *VITRINE 10*! 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:10:56.371Z",
+      "updatedAt": "2025-09-19T16:27:41.426Z",
+      "deliveredAt": "2025-09-19T16:27:41.426Z"
+    },
+    {
+      "id": "3EB0A0548E4C92DB84B854E4A6ACAC5DFA8DC0DC",
+      "remoteJid": "5567998363382",
+      "body": "Bom dia, Camila! Dê uma olhadinha na nossa nova *VITRINE 10* 🌟",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:11:18.084Z",
+      "updatedAt": "2025-09-19T15:14:35.945Z",
+      "deliveredAt": "2025-09-19T15:14:35.945Z"
+    },
+    {
+      "id": "3EB04627E9EE00973DB77A8A02206FB776A4CC12",
+      "remoteJid": "5567996955194",
+      "body": "Bom dia, Gabrielli! Dê uma olhadinha na nossa nova *VITRINE 10* 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:11:37.096Z",
+      "updatedAt": "2025-09-19T15:13:24.764Z"
+    },
+    {
+      "id": "3EB05B9A082C8C30EA17BD3DDAFAD5ED56C27EEA",
+      "remoteJid": "5567981231032",
+      "body": "Bom dia, Elida! Dê uma olhadinha na nossa nova *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:12:00.972Z",
+      "updatedAt": "2025-09-19T15:13:24.794Z"
+    },
+    {
+      "id": "3EB0317599B11EAF2832F2F53617EDC32009780E",
+      "remoteJid": "5567998332006",
+      "body": "Bom dia, Márcia! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:12:24.522Z",
+      "updatedAt": "2025-09-19T15:13:24.815Z",
+      "deliveredAt": "2025-09-19T15:12:27.099Z"
+    },
+    {
+      "id": "3EB0AD650662459BF7099D5535CBF6BD1CE9C9DE",
+      "remoteJid": "5567996915696",
+      "body": "Bom dia, Alessandra! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:12:50.539Z",
+      "updatedAt": "2025-09-19T15:13:24.768Z",
+      "deliveredAt": "2025-09-19T15:12:51.069Z"
+    },
+    {
+      "id": "3EB0D6007D38F8E7F05EDD366EBD4CB8F4CA3CF1",
+      "remoteJid": "5567991034968",
+      "body": "Bom dia, Elizabeth! 😊 Dê uma olhadinha na nossa nova *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:13:15.570Z",
+      "updatedAt": "2025-09-19T15:13:24.797Z"
+    },
+    {
+      "id": "3EB0A66A96E6E639F0B919BD6ABC61EC763B0B7F",
+      "remoteJid": "5567981842728",
+      "body": "Bom dia, Bruna! 😊 Dê uma olhada na nossa nova *VITRINE 10*!",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:13:36.292Z"
+    },
+    {
+      "id": "3EB0C985D3BB3DF286690F67603110FB45278DD4",
+      "remoteJid": "5567996864364",
+      "body": "Bom dia, Fabiana! 🌟 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:30:59.628Z",
+      "updatedAt": "2025-09-19T15:31:40.804Z",
+      "deliveredAt": "2025-09-19T15:30:59.894Z"
+    },
+    {
+      "id": "3EB0B06E3D5ADC87E12F78D4C61AF59EFBC6D886",
+      "remoteJid": "5567998861968",
+      "body": "Bom dia, Thays! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:31:17.080Z",
+      "updatedAt": "2025-09-19T15:31:40.861Z",
+      "deliveredAt": "2025-09-19T15:31:17.698Z"
+    },
+    {
+      "id": "3EB06D3C8DD54C7074E4C2D7BFCFDBBC9D7DF64E",
+      "remoteJid": "5567999325902",
+      "body": "Bom dia, Joanilda! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:31:35.592Z",
+      "updatedAt": "2025-09-19T15:31:40.891Z",
+      "deliveredAt": "2025-09-19T15:31:35.937Z"
+    },
+    {
+      "id": "3EB02CE97DB8A1AB1885DCFBFE778C8E6E9ED990",
+      "remoteJid": "5567998115143",
+      "body": "Bom dia, Daiane! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:31:56.910Z"
+    },
+    {
+      "id": "3EB0F8BA624653C03C90A5A8BD70879FD8893644",
+      "remoteJid": "5567991933176",
+      "body": "Bom dia, Beatriz! Dê uma olhadinha na nossa *VITRINE 10* 😊",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:32:22.488Z"
+    },
+    {
+      "id": "3EB0D4513348184F8EB16B300421F738703659A6",
+      "remoteJid": "5567991039657",
+      "body": "Bom dia, Camila! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:32:47.798Z"
+    },
+    {
+      "id": "3EB0B82443D4557FC074943A3936A72363320866",
+      "remoteJid": "5567992705860",
+      "body": "Bom dia, Amaryllis! Dê uma olhadinha na nossa *VITRINE 10* 😊",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:33:09.904Z"
+    },
+    {
+      "id": "3EB089EF9601E8E19E6FD0CB431D52C150AFDD49",
+      "remoteJid": "5567992796701",
+      "body": "Bom dia, Kely! Dê uma olhadinha na nossa *VITRINE 10* 😊.",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:33:34.745Z",
+      "updatedAt": "2025-09-19T15:35:29.822Z"
+    },
+    {
+      "id": "3EB04A9BB33CE976F9449BA3BA3E8BEF343BB4B7",
+      "remoteJid": "5567998828884",
+      "body": "Bom dia, Angelina! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:33:59.242Z",
+      "updatedAt": "2025-09-19T15:35:29.875Z",
+      "deliveredAt": "2025-09-19T15:34:04.687Z"
+    },
+    {
+      "id": "3EB0AF9F1D22D7E17854704FD5A37FFF3A875A35",
+      "remoteJid": "5567981267945",
+      "body": "Bom dia, Bianca! Dê uma olhada na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:34:22.160Z",
+      "updatedAt": "2025-09-19T15:35:30.071Z"
+    },
+    {
+      "id": "3EB07C7FECC7DC203D520D8EBBDEB5DC3EC9F114",
+      "remoteJid": "5567992353817",
+      "body": "Bom dia, Vitória! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:34:43.486Z",
+      "updatedAt": "2025-09-19T15:35:30.073Z"
+    },
+    {
+      "id": "3EB011B69D19F56462A62408EC4E7C50E5146DF6",
+      "remoteJid": "5567993415107",
+      "body": "Bom dia, Marisa! Dê uma olhadinha na nossa *VITRINE 10*. 🌟",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:35:03.404Z",
+      "updatedAt": "2025-09-19T15:35:30.075Z"
+    },
+    {
+      "id": "3EB035EB7B371F6A0E5F065593E31DAE1F142C73",
+      "remoteJid": "5567998733398",
+      "body": "Bom dia, Luzanira! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:35:22.915Z"
+    },
+    {
+      "id": "3EB084C8B92B7AEED7D3F468CE3E57801B43918B",
+      "remoteJid": "5567998352928",
+      "body": "Bom dia, Ana! Dê uma olhadinha na nossa *VITRINE 10*! 🌟",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:35:43.211Z",
+      "updatedAt": "2025-09-19T15:35:43.677Z",
+      "deliveredAt": "2025-09-19T15:35:43.677Z"
+    },
+    {
+      "id": "3EB04FF046372B9240679CC4BCCB53A67E6C15DB",
+      "remoteJid": "5567992514363",
+      "body": "Bom dia, Silvia! Dê uma olhadinha na nossa *VITRINE 10*. 🌟",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:35:59.308Z",
+      "updatedAt": "2025-09-20T00:15:57.011Z",
+      "deliveredAt": "2025-09-19T23:03:23.900Z"
+    },
+    {
+      "id": "3EB09DAFECE4177A2B314583E4E8DC7D6697161B",
+      "remoteJid": "5567984680408",
+      "body": "Bom dia, Juliana! Dê uma olhadinha na nossa *VITRINE 10* 🌟",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:36:14.868Z",
+      "updatedAt": "2025-09-22T10:22:01.409Z",
+      "deliveredAt": "2025-09-19T15:36:15.084Z"
+    },
+    {
+      "id": "3EB0E54207EAA0E8B3A47E149B61562C7BC7D109",
+      "remoteJid": "5567999569982",
+      "body": "Bom dia, Evelyn! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:36:36.228Z",
+      "updatedAt": "2025-09-19T15:38:50.848Z"
+    },
+    {
+      "id": "3EB07529C8EA75F76C8B7178E195713C74659EE7",
+      "remoteJid": "5567999544571",
+      "body": "Bom dia, Layne! Dê uma olhadinha na nossa *VITRINE 10* 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:37:05.774Z",
+      "updatedAt": "2025-09-19T15:38:50.876Z",
+      "deliveredAt": "2025-09-19T15:37:56.951Z"
+    },
+    {
+      "id": "3EB0BEC7F06A3573DFB2EEAC9A2A4F17E9CAA63A",
+      "remoteJid": "5567992155790",
+      "body": "Bom dia, Gabriel! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:37:26.097Z"
+    },
+    {
+      "id": "3EB0A5F52D3DA7FD485167C5A06063F0BC68E8B6",
+      "remoteJid": "5567992948474",
+      "body": "Bom dia, Lucélia! Dê uma olhadinha na nossa *VITRINE 10*! 🌟",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:37:57.033Z",
+      "updatedAt": "2025-09-19T15:38:51.467Z",
+      "deliveredAt": "2025-09-19T15:37:59.452Z"
+    },
+    {
+      "id": "3EB0F839DD29C6430B9496457FB1C04C52956A07",
+      "remoteJid": "5567999357173",
+      "body": "Bom dia, Jane! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:38:21.073Z",
+      "updatedAt": "2025-09-19T15:38:50.970Z"
+    },
+    {
+      "id": "3EB0FB5A40BA39FE88D4C4A8EAEBB9C8A5005763",
+      "remoteJid": "5567991010618",
+      "body": "Bom dia, Diana! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:38:42.703Z",
+      "updatedAt": "2025-09-19T15:38:51.143Z",
+      "deliveredAt": "2025-09-19T15:38:44.651Z"
+    },
+    {
+      "id": "3EB05D0730D2472C1D3361CC34BA1C0853806637",
+      "remoteJid": "5567991945753",
+      "body": "Bom dia, Fernanda! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:39:02.702Z",
+      "updatedAt": "2025-09-27T17:58:06.865Z",
+      "readAt": "2025-09-19T15:39:44.318Z",
+      "deliveredAt": "2025-09-27T17:58:06.865Z"
+    },
+    {
+      "id": "3EB0A8C405B3C4FF0E84EA958DF8E765EE13F1E2",
+      "remoteJid": "5567992747691",
+      "body": "Bom dia, Tatiane! Dê uma olhadinha na nossa *VITRINE 10* 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:39:21.841Z",
+      "updatedAt": "2025-09-19T15:39:36.578Z"
+    },
+    {
+      "id": "3EB0355552DA392DD722E1F8EA4379FF17948F24",
+      "remoteJid": "5567996367791",
+      "body": "Bom dia, Eronice! Dê uma olhadinha na nossa *VITRINE 10* 😊.",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:39:45.240Z",
+      "updatedAt": "2025-09-19T15:40:03.749Z"
+    },
+    {
+      "id": "3EB08DD9D86C7568D006D0420416D69D007A984B",
+      "remoteJid": "5567981542409",
+      "body": "Bom dia, Bruna! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:39:59.941Z",
+      "updatedAt": "2025-09-19T15:40:04.782Z",
+      "deliveredAt": "2025-09-19T15:40:01.515Z"
+    },
+    {
+      "id": "3EB0BA636BD734350CD6AE304E498548E3D3268D",
+      "remoteJid": "5567981184884",
+      "body": "Bom dia, Érica! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "sent",
+      "timestamp": "2025-09-19T15:40:21.811Z"
+    },
+    {
+      "id": "3EB0BC0A4B2A2B8DA909C83D960BF458575B0072",
+      "remoteJid": "5567996957105",
+      "body": "Bom dia, Gabriela! Dê uma olhadinha na nossa *VITRINE 10* 😊.",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:40:37.514Z",
+      "updatedAt": "2025-09-19T15:41:29.535Z"
+    },
+    {
+      "id": "3EB0C9B3970FF1B31C4E13F3E949D0F13F0F348D",
+      "remoteJid": "5567993301192",
+      "body": "Bom dia, Luana! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:41:00.653Z",
+      "updatedAt": "2025-10-03T02:07:55.306Z",
+      "deliveredAt": "2025-09-19T23:05:57.056Z"
+    },
+    {
+      "id": "3EB0A669A8B274EBBC7476EF93E89619EA3B17F8",
+      "remoteJid": "5567999611782",
+      "body": "Bom dia, Maisa! Dê uma olhadinha na nossa *VITRINE 10* 😊.",
+      "status": "READ",
+      "timestamp": "2025-09-19T15:41:23.589Z",
+      "updatedAt": "2025-09-19T15:42:10.278Z",
+      "readAt": "2025-09-19T15:42:10.278Z"
+    },
+    {
+      "id": "3EB067574211F011CC36171C4DDA90E0C7C1C6CD",
+      "remoteJid": "5567991991725",
+      "body": "Bom dia, Fabiane! Dê uma olhadinha na nossa *VITRINE 10*! 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:41:43.512Z",
+      "updatedAt": "2025-09-19T15:41:43.882Z",
+      "deliveredAt": "2025-09-19T15:41:43.882Z"
+    },
+    {
+      "id": "3EB06D98A55A66E3B7A00DF1B3372954555D0FE1",
+      "remoteJid": "5567984186904",
+      "body": "Bom dia, Jennifer! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:42:05.341Z",
+      "updatedAt": "2025-09-19T15:42:05.811Z",
+      "deliveredAt": "2025-09-19T15:42:05.811Z"
+    },
+    {
+      "id": "3EB046C93FE2F526133E8B4EBB1D793C07A0E199",
+      "remoteJid": "5567992024794",
+      "body": "Bom dia, Simone! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:42:27.014Z",
+      "updatedAt": "2025-09-19T15:42:27.866Z",
+      "deliveredAt": "2025-09-19T15:42:27.866Z"
+    },
+    {
+      "id": "3EB0665FDB8747972B510E7BF7C2C6C97416D162",
+      "remoteJid": "5567993433627",
+      "body": "Bom dia, Cristiely! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:42:48.362Z",
+      "updatedAt": "2025-09-19T15:43:43.696Z"
+    },
+    {
+      "id": "3EB06EDED38E56EEA73392EA9E3B32EF6C3F5C50",
+      "remoteJid": "5567992845961",
+      "body": "Bom dia, Roseli! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:43:08.682Z",
+      "updatedAt": "2025-09-19T15:43:44.652Z",
+      "deliveredAt": "2025-09-19T15:43:08.847Z"
+    },
+    {
+      "id": "3EB0F2E7B7E36CF6C1599D40CB7E9071DB3D6045",
+      "remoteJid": "5567984093443",
+      "body": "Bom dia, Isabele! Dê uma olhadinha na nossa *VITRINE 10*! 🌟",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:43:24.009Z",
+      "updatedAt": "2025-09-21T22:04:11.629Z",
+      "deliveredAt": "2025-09-19T15:43:25.789Z"
+    },
+    {
+      "id": "3EB08EA4F26993A47025480AD7D14C4F83CD22FB",
+      "remoteJid": "5567998271021",
+      "body": "Bom dia, Tacia! Dê uma olhadinha na nossa *VITRINE 10* 😊",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:43:38.434Z",
+      "updatedAt": "2025-09-29T18:52:05.772Z",
+      "deliveredAt": "2025-09-29T18:52:05.772Z"
+    },
+    {
+      "id": "3EB0D5373C50763F89BA7B16999522BA612EC391",
+      "remoteJid": "5567991788169",
+      "body": "Bom dia, Tatianne! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:44:04.453Z",
+      "updatedAt": "2025-09-19T15:44:12.460Z",
+      "deliveredAt": "2025-09-19T15:44:12.460Z"
+    },
+    {
+      "id": "3EB0733E576ACF73D97BC6002A1DA00309ECC2FD",
+      "remoteJid": "5567991532170",
+      "body": "Bom dia, Eliziene! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:44:29.979Z",
+      "updatedAt": "2025-09-19T15:47:59.245Z"
+    },
+    {
+      "id": "3EB0598F6EBF3710A93744E5DFD899864F6FF646",
+      "remoteJid": "5567998029939",
+      "body": "Bom dia, Carine! Dê uma olhadinha na nossa *VITRINE 10* 🌟.",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:44:44.414Z",
+      "updatedAt": "2025-09-19T15:48:00.242Z"
+    },
+    {
+      "id": "3EB01D9F745F1D08907E1BE668220B2DA2EA63A0",
+      "remoteJid": "5567996044562",
+      "body": "Bom dia, Morieli! Dê uma olhadinha na nossa *VITRINE 10*. 😊",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:44:58.643Z",
+      "updatedAt": "2025-09-19T15:48:00.271Z"
+    },
+    {
+      "id": "3EB0F8D9B8915B328E9FA6C47D01EF85BBC88C53",
+      "remoteJid": "5567993039965",
+      "body": "Bom dia, Evelyn! Dê uma olhadinha na nossa *VITRINE 10* 😊.",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:45:18.299Z",
+      "updatedAt": "2025-09-19T15:48:00.292Z"
+    },
+    {
+      "id": "3EB0D68B29CBC095E58D15C8A45CC13AC668500D",
+      "remoteJid": "5567996629512",
+      "body": "Bom dia, Ana! Dê uma olhada na nossa *VITRINE 10*. 🌟",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-19T15:45:50.688Z",
+      "updatedAt": "2025-09-19T16:33:33.879Z",
+      "deliveredAt": "2025-09-19T16:33:33.879Z"
+    },
+    {
+      "id": "3EB0A440318C67E04E10AA9BDF2A3DB825CAFE53",
+      "remoteJid": "5567993008908",
+      "body": "Bom dia, Mônica! 😊 Dê uma olhadinha na nossa *VITRINE 10*!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:46:16.754Z",
+      "updatedAt": "2025-09-19T15:48:00.279Z",
+      "deliveredAt": "2025-09-19T15:46:22.041Z"
+    },
+    {
+      "id": "3EB061E192ED2B3059DED00D5EBDAB99B0520377",
+      "remoteJid": "5567992655195",
+      "body": "Bom dia, AdrieLi! Dê uma olhadinha na nossa *VITRINE 10* 🌟",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-19T15:46:35.299Z",
+      "updatedAt": "2025-09-19T15:48:00.315Z"
+    },
+    {
+      "id": "3EB04321E171B9F65429CF56999C1A8761CE902C",
+      "remoteJid": "5567991257171",
+      "body": "teste",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-23T20:08:36.210Z",
+      "updatedAt": "2025-09-23T21:49:47.504Z",
+      "deliveredAt": "2025-09-23T20:08:36.460Z",
+      "readAt": "2025-09-23T20:34:53.797Z"
+    },
+    {
+      "id": "3EB0721BDD88A73B5DAB0FF2016603327F31DFC4",
+      "remoteJid": "5567991257171",
+      "body": "teste 2",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-09-23T21:47:00.907Z",
+      "updatedAt": "2025-09-23T21:49:47.533Z",
+      "deliveredAt": "2025-09-23T21:47:01.375Z",
+      "readAt": "2025-09-23T21:47:19.399Z"
+    },
+    {
+      "id": "3EB01466675D3E9D8F6A82921D101E9B858FE1B8",
+      "remoteJid": "5567991257171",
+      "body": "teste 4",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-24T10:43:11.033Z",
+      "updatedAt": "2025-10-01T12:12:11.019Z",
+      "deliveredAt": "2025-09-24T10:43:11.360Z",
+      "readAt": "2025-09-24T10:45:37.860Z"
+    },
+    {
+      "id": "3EB07B24563BF38E952156089945713D5C762E26",
+      "remoteJid": "5567991257171",
+      "body": "teste 5",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-25T11:36:02.681Z",
+      "updatedAt": "2025-09-25T18:57:40.553Z",
+      "deliveredAt": "2025-09-25T11:36:02.959Z",
+      "readAt": "2025-09-25T11:37:41.331Z"
+    },
+    {
+      "id": "3EB0738A481A40326A06955679747FF4358559FA",
+      "remoteJid": "5567991257171",
+      "body": "teste 6",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-25T12:50:39.480Z",
+      "updatedAt": "2025-10-01T12:12:26.543Z",
+      "deliveredAt": "2025-09-25T12:50:46.567Z",
+      "readAt": "2025-09-25T12:50:46.567Z"
+    },
+    {
+      "id": "3EB03D23B2580B44081198071A2B5654A4A61EF7",
+      "remoteJid": "5567991257171",
+      "body": "teste 7",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-25T13:06:39.278Z",
+      "updatedAt": "2025-10-01T12:12:26.559Z",
+      "deliveredAt": "2025-09-25T13:06:39.760Z",
+      "readAt": "2025-09-25T13:06:52.494Z"
+    },
+    {
+      "id": "3EB008405E75B9A5AD13551BA30A83445E720E33",
+      "remoteJid": "5567991257171",
+      "body": "teste 8",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-09-25T13:16:41.567Z",
+      "updatedAt": "2025-10-01T12:12:26.606Z",
+      "deliveredAt": "2025-09-25T13:16:42.056Z",
+      "readAt": "2025-09-25T13:17:52.056Z"
+    },
+    {
+      "id": "3EB0FDC9874FA3E55E8775520538A93ACE4B2C90",
+      "remoteJid": "5567991257171",
+      "body": "Gotcha!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-10-02T18:59:26.623Z",
+      "updatedAt": "2025-10-02T21:55:05.626Z",
+      "deliveredAt": "2025-10-02T18:59:26.958Z",
+      "readAt": "2025-10-02T18:59:56.602Z"
+    },
+    {
+      "id": "3EB0AC7EBE106BEE851D998EC65D17C78E5C9881",
+      "remoteJid": "5567991257171",
+      "body": "Por que a pedra foi ao médico? Porque ela estava se sentindo um pouco 'rochosa'!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-10-02T20:29:17.971Z",
+      "updatedAt": "2025-10-02T21:55:05.761Z",
+      "deliveredAt": "2025-10-02T20:29:18.259Z",
+      "readAt": "2025-10-02T20:29:35.264Z"
+    },
+    {
+      "id": "3EB0E6078177702DAB5BE7CD49F0C7DD659E7ADA",
+      "remoteJid": "5567991257171",
+      "body": "Por que o relógio foi ao médico? Porque ele estava um pouco atrasado!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-10-03T02:28:21.327Z",
+      "updatedAt": "2025-10-06T12:21:03.569Z",
+      "deliveredAt": "2025-10-03T02:28:21.962Z",
+      "readAt": "2025-10-03T02:28:55.101Z"
+    },
+    {
+      "id": "3EB0F137FBF243C7800ED164CF9B1C88B622369D",
+      "remoteJid": "556799857106",
+      "body": "Olá Ricardo! Aqui vai uma receita de bolo deliciosa: 2 xícaras de farinha, 1 xícaras de açúcar, 1/2 xícaras de manteiga derretida, 2 ovos, 1 colher de sopa de fermento. Misture tudo e asse em forno pré-aquecido a 180°C por 30 minutos. Bom apetite!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-10-06T15:26:41.696Z",
+      "updatedAt": "2025-10-13T16:55:24.178Z",
+      "deliveredAt": "2025-10-06T15:26:42.009Z",
+      "readAt": "2025-10-06T15:27:10.589Z"
+    },
+    {
+      "id": "3EB0F127580D1CD356A01F568EFFF0E81E57F3D0",
+      "remoteJid": "5567981216230",
+      "body": "Por que o médico foi ao bar? Porque ele precisava de um drinque!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-10-07T19:39:52.168Z",
+      "updatedAt": "2025-10-08T04:00:31.824Z",
+      "deliveredAt": "2025-10-07T19:39:53.603Z"
+    },
+    {
+      "id": "3EB08BEB2F6FBEA936ACE84C6A3A3D45EBB329C5",
+      "remoteJid": "5567981216230",
+      "body": "Haha, é uma piada com palavra! 'Drinque' é um trocadilho com 'dr.' (doutor) e 'drink' (bebida). Entendeu agora?",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-10-07T19:40:56.654Z",
+      "updatedAt": "2025-10-08T04:00:31.796Z",
+      "deliveredAt": "2025-10-07T19:40:57.779Z"
+    },
+    {
+      "id": "3EB0446A9FF406CF98DEB35ED19A3CD8275A8BA2",
+      "remoteJid": "556191023737",
+      "body": "Por que a operadora de telefonia foi ao psicólogo? Porque ela tinha muitas 'linhas' cruzadas!",
+      "status": "DELIVERY_ACK",
+      "timestamp": "2025-10-09T21:33:21.700Z",
+      "updatedAt": "2025-10-09T21:35:51.368Z",
+      "deliveredAt": "2025-10-09T21:35:51.368Z"
+    },
+    {
+      "id": "3EB08653BBDFB59F65878D9944C5E331E4A98040",
+      "remoteJid": "5561991027237",
+      "body": "Por que a operadora de telefonia foi ao psicólogo? Porque ela tinha muitas 'linhas' cruzadas!",
+      "status": "SERVER_ACK",
+      "timestamp": "2025-10-09T21:36:22.739Z",
+      "updatedAt": "2025-10-09T21:36:31.665Z",
+      "deliveredAt": "2025-10-09T21:36:24.526Z"
+    },
+    {
+      "id": "3EB0B04F2BC1D36F474D9A",
+      "remoteJid": "5567991257171",
+      "body": "Pode me trazer um café por favor?",
+      "status": "sent",
+      "timestamp": "2025-10-23T14:02:42.725Z"
+    },
+    {
+      "id": "3EB0E78C1201B71487C8B0",
+      "remoteJid": "5567999283800",
+      "body": "Olá Angela, aqui está o apiada!",
+      "status": "sent",
+      "timestamp": "2025-10-23T17:26:13.983Z"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+Aqui está a documentação completa em formato Markdown para a página "Find Status Message" da Evolution API:
+
+MarkDown
+
+# Find Status Message - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para buscar mensagens de status em um chat usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/chat/findStatusMessage/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/chat/findStatusMessage/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "where": {
+      "_id": "<string>",
+      "id": "<string>",
+      "remoteJid": "<string>",
+      "fromMe": true
+    },
+    "limit": 123
+  }'
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância de chat.
+Tipo de Body
+application/json
+Resposta
+A resposta será em formato JSON, contendo as mensagens de status encontradas. Exemplo de resposta:
+
+JSON
+
+{
+  "messages": [
+    {
+      "id": "<string>",
+      "remoteJid": "<string>",
+      "timestamp": "2023-01-01T00:00:00Z",
+      "status": "<string>"
+    }
+  ]
+}
+Descrição da Resposta
+messages: Uma lista de objetos contendo informações sobre as mensagens de status, incluindo id, remoteJid, timestamp, e status.

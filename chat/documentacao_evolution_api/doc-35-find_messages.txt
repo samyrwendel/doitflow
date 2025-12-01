@@ -1,0 +1,55 @@
+Aqui está a documentação completa em formato Markdown para a página "Find Messages" da Evolution API:
+
+MarkDown
+
+# Find Messages - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para buscar mensagens em um chat usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/chat/findMessages/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/chat/findMessages/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "where": {
+      "key": {
+        "remoteJid": "<string>"
+      }
+    }
+  }'
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância de chat.
+Tipo de Body
+application/json
+Resposta
+A resposta será em formato JSON, contendo as mensagens encontradas. Por exemplo:
+
+JSON
+
+{
+  "messages": [
+    {
+      "id": "<string>",
+      "from": "<string>",
+      "to": "<string>",
+      "text": "<string>",
+      "timestamp": "2023-01-01T00:00:00Z"
+    }
+  ]
+}
+Descrição da Resposta
+messages: Uma lista de objetos contendo informações sobre as mensagens, incluindo id, from, to, text, e timestamp.

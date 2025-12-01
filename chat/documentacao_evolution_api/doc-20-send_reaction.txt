@@ -1,0 +1,70 @@
+Aqui está a documentação completa em formato Markdown para a página "Send Reaction" da Evolution API:
+
+MarkDown
+
+# Send Reaction - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para enviar uma reação a uma mensagem específica usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/message/sendReaction/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/message/sendReaction/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "key": {
+      "remoteJid": "<string>",
+      "fromMe": true,
+      "id": "<string>"
+    },
+    "reaction": "🚀"
+  }'
+Respostas
+Sucesso (201)
+Código: 201
+
+JSON
+
+{
+  "key": {
+    "remoteJid": "553198296801@s.whatsapp.net",
+    "fromMe": true,
+    "id": "BAE569F0E38F858D"
+  },
+  "message": {
+    "reactionMessage": {
+      "key": {
+        "remoteJid": "553198296801@s.whatsapp.net",
+        "fromMe": true,
+        "id": "BAE58DA6CBC941BC"
+      },
+      "text": "🚀",
+      "senderTimestampMs": "1717781105034"
+    }
+  },
+  "messageTimestamp": "1717781105",
+  "status": "PENDING"
+}
+Erro (404)
+Código: 404
+
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância para enviar a reação.
+Tipo de Body
+application/json
+Tipo de Resposta
+201 - application/json
+A resposta é do tipo object.

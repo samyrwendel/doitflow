@@ -1,0 +1,45 @@
+Aqui está a documentação completa em formato Markdown para a página "Fetch Profile Picture URL" da Evolution API:
+
+MarkDown
+
+# Fetch Profile Picture URL - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para buscar a URL da foto de perfil de um usuário em um chat usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/chat/fetchProfilePictureUrl/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/chat/fetchProfilePictureUrl/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "number": "<string>"
+  }'
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância de chat.
+Tipo de Body
+application/json
+Resposta
+Sucesso (200)
+
+JSON
+
+{
+  "wuid": "553198296801@s.whatsapp.net",
+  "profilePictureUrl": "https://pps.whatsapp.net/v/t61.2..."
+}
+Descrição da Resposta
+wuid: O identificador único do usuário.
+profilePictureUrl: A URL da foto de perfil do usuário.

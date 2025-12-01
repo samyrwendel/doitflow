@@ -1,0 +1,51 @@
+Aqui está a documentação completa em formato Markdown para a página "Check is WhatsApp" da Evolution API:
+
+MarkDown
+
+# Check is WhatsApp - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para verificar se um número está ativo no WhatsApp usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/chat/whatsappNumbers/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/chat/whatsappNumbers/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "numbers": [
+      "<string>"
+    ]
+  }'
+Respostas
+Sucesso (200)
+Código: 200
+
+JSON
+
+[
+  {
+    "exists": true,
+    "jid": "553198296801@s.whatsapp.net",
+    "number": "553198296801"
+  }
+]
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância para verificar os números.
+Tipo de Body
+application/json
+Tipo de Resposta
+200 - application/json
+Retorna um array de objetos representando as informações de existência da conta do WhatsApp.

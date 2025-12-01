@@ -1,0 +1,43 @@
+# Connection State - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para obter o estado de conexão de uma instância existente na Evolution API.
+
+### Método
+**GET**
+
+### Endpoint
+`/instance/connectionState/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request GET \
+  --url https://{server-url}/instance/connectionState/{instance} \
+  --header 'apikey: <api-key>'
+
+-------------------------------
+Respostas
+Sucesso (200)
+Código: 200
+
+{
+  "instance": {
+    "instanceName": "teste-docs",
+    "state": "open"
+  }
+}
+
+Erro (404)
+Código: 404
+
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância para obter o estado de conexão.
+Tipo de Resposta
+200 - application/json
+
+A resposta é do tipo object.

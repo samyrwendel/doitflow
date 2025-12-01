@@ -1,0 +1,103 @@
+# Create Instance - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para criar uma nova instância na Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/instance/create`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/instance/create \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "instanceName": "<string>",
+    "token": "<string>",
+    "qrcode": true,
+    "number": "<string>",
+    "integration": "WHATSAPP-BAILEYS",
+    "rejectCall": true,
+    "msgCall": "<string>",
+    "groupsIgnore": true,
+    "alwaysOnline": true,
+    "readMessages": true,
+    "readStatus": true,
+    "syncFullHistory": true,
+    "proxyHost": "<string>",
+    "proxyPort": "<string>",
+    "proxyProtocol": "<string>",
+    "proxyUsername": "<string>",
+    "proxyPassword": "<string>",
+    "webhook": {
+      "url": "<string>",
+      "byEvents": true,
+      "base64": true,
+      "headers": {
+        "authorization": "<string>",
+        "Content-Type": "<string>"
+      },
+      "events": [
+        "APPLICATION_STARTUP"
+      ]
+    },
+    "rabbitmq": {
+      "enabled": true,
+      "events": [
+        "APPLICATION_STARTUP"
+      ]
+    },
+    "sqs": {
+      "enabled": true,
+      "events": [
+        "APPLICATION_STARTUP"
+      ]
+    },
+    "chatwootAccountId": 123,
+    "chatwootToken": "<string>",
+    "chatwootUrl": "<string>",
+    "chatwootSignMsg": true,
+    "chatwootReopenConversation": true,
+    "chatwootConversationPending": true,
+    "chatwootImportContacts": true,
+    "chatwootNameInbox": "<string>",
+    "chatwootMergeBrazilContacts": true,
+    "chatwootImportMessages": true,
+    "chatwootDaysLimitImportMessages": 123,
+    "chatwootOrganization": "<string>",
+    "chatwootLogo": "<string>"
+  }'
+
+---------------------------------------------------------
+Respostas
+Sucesso (201)
+Código: 201
+
+{
+  "instance": {
+    "instanceName": "teste-docs",
+    "instanceId": "af6c5b7c-ee27-4f94-9ea8-192393746ddd",
+    "webhook_wa_business": null,
+    "access_token_wa_business": "",
+    "status": "created"
+  },
+  "hash": {
+    "apikey": "123456"
+  },
+  "settings": {
+    "reject_call": false,
+    "msg_call": "",
+    "groups_ignore": true,
+    "always_online": false,
+    "read_messages": false,
+    "read_status": false,
+    "sync_full_history": false
+  }
+}

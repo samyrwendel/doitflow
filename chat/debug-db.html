@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug IndexedDB</title>
+</head>
+<body>
+    <h1>Debug do Banco de Dados</h1>
+    <div id="output"></div>
+    
+    <script>
+        async function debugDatabase() {
+            const output = document.getElementById('output');
+            
+            try {
+                // Abrir o banco de dados
+                const dbRequest = indexedDB.open('EvolutionDB', 1);
+                
+                dbRequest.onsuccess = async function(event) {
+                    const db = event.target.result;
+                    
+                    // Verificar se a object store existe
+                    if (!db.objectStoreNames.contains('instances')) {
+                        output.innerHTML = '<p>Nenhuma tabela "instances" encontrada no banco.</p>';
+                        return;
+                    }
+                    
+                    // Ler todas as instâncias
+                    const transaction = db.transaction(['instances'], 'readonly');
+                    const store = transaction.objectStore('instances');
+                    const request = store.getAll();
+                    
+                    request.onsuccess = function() {
+                        const instances = request.result;
+                        
+                        if (instances.length === 0) {
+                            output.innerHTML = '<p>Nenhuma instância encontrada no banco.</p>';
+                        } else {
+                            let html = '<h2>Instâncias encontradas:</h2>';
+                            instances.forEach((instance, index) => {
+                                html += `
+                                    <div style="border: 1px solid #ccc; margin: 10px; padding: 10px; border-radius: 5px;">
+                                        <h3>Instância ${index + 1}</h3>
+                                        <p><strong>ID:</strong> ${instance.id || 'N/A'}</p>
+                                        <p><strong>Nome:</strong> ${instance.name || 'N/A'}</p>
+                                        <p><strong>API Key:</strong> ${instance.api_key || 'N/A'}</p>
+                                        <p><strong>Evolution URL:</strong> ${instance.evolution_url || 'N/A'}</p>
+                                        <p><strong>Status:</strong> ${instance.status || 'N/A'}</p>
+                                        <p><strong>Criado em:</strong> ${instance.created_at ? new Date(instance.created_at).toLocaleString() : 'N/A'}</p>
+                                        <p><strong>Atualizado em:</strong> ${instance.updated_at ? new Date(instance.updated_at).toLocaleString() : 'N/A'}</p>
+                                    </div>
+                                `;
+                            });
+                            output.innerHTML = html;
+                        }
+                    };
+                    
+                    request.onerror = function() {
+                        output.innerHTML = '<p>Erro ao ler instâncias: ' + request.error + '</p>';
+                    };
+                };
+                
+                dbRequest.onerror = function() {
+                    output.innerHTML = '<p>Erro ao abrir banco de dados: ' + dbRequest.error + '</p>';
+                };
+                
+                dbRequest.onupgradeneeded = function() {
+                    output.innerHTML = '<p>Banco de dados não existe ou precisa ser atualizado.</p>';
+                };
+                
+            } catch (error) {
+                output.innerHTML = '<p>Erro: ' + error.message + '</p>';
+            }
+        }
+        
+        // Executar quando a página carregar
+        window.onload = debugDatabase;
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+Aqui está a documentação completa em formato Markdown para a página "Send Status" da Evolution API:
+
+MarkDown
+
+# Send Status - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para enviar um status para um número específico usando a Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/message/sendStatus/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/message/sendStatus/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "type": "text",
+    "content": "<string>",
+    "caption": "<string>",
+    "backgroundColor": "<string>",
+    "font": 123,
+    "allContacts": true,
+    "statusJidList": [
+      "{{remoteJID}}"
+    ]
+  }'
+Respostas
+Sucesso (201)
+Código: 201
+
+JSON
+
+{
+  "key": {
+    "remoteJid": "status@broadcast",
+    "fromMe": true,
+    "id": "BAE5FAB9E65A3DA8"
+  },
+  "message": {
+    "extendedTextMessage": {
+      "text": "example",
+      "backgroundArgb": 4294910617,
+      "font": "FB_SCRIPT"
+    }
+  },
+  "messageTimestamp": "1717691767",
+  "status": "PENDING",
+  "participant": "553198296801:17@s.whatsapp.net"
+}
+Erro (404)
+Código: 404
+
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância para enviar o status.
+Tipo de Body
+application/json
+Tipo de Resposta
+201 - application/json
+
+A resposta é do tipo object.

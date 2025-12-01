@@ -1,0 +1,31 @@
+CONTRATO DE PRESTAÇÃO DE SERVIÇOS
+ID: CONT-2025-001
+
+PARTES CONTRATANTES:
+Contratante: Empresa ABC Ltda.
+Contratado: Consultoria XYZ S.A.
+
+OBJETO DO CONTRATO:
+Prestação de serviços de consultoria em tecnologia da informação
+
+VALOR DO CONTRATO:
+O valor total acordado é de R$ 25.000,00 (vinte e cinco mil reais), 
+a ser pago em 5 parcelas mensais de R$ 5.000,00 cada.
+
+VIGÊNCIA:
+O presente contrato terá vigência de 12 meses, iniciando em 01/01/2025
+e encerrando em 31/12/2025.
+
+FORMA DE PAGAMENTO:
+- Parcelas mensais de R$ 5.000,00
+- Vencimento: dia 10 de cada mês
+- Primeira parcela: 10/01/2025
+- Última parcela: 10/05/2025
+
+ESCOPO DOS SERVIÇOS:
+- Análise de sistemas
+- Implementação de melhorias
+- Treinamento de equipe
+- Suporte técnico mensal
+
+DATA DE ASSINATURA: 15/12/2024

@@ -1,0 +1,44 @@
+# Instance Connect - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para conectar a uma instância existente na Evolution API.
+
+### Método
+**GET**
+
+### Endpoint
+`/instance/connect/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request GET \
+  --url https://{server-url}/instance/connect/{instance} \
+  --header 'apikey: <api-key>'
+
+---------------------------------------
+Respostas
+Sucesso (200)
+Código: 200
+
+{
+  "pairingCode": "WZYEH1YY",
+  "code": "2@y8eK+bjtEjUWy9/FOM...",
+  "count": 1
+}
+
+Erro (404)
+Código: 404
+
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância a ser conectada.
+Parâmetros de Consulta
+number (string) - Número de telefone (com código de país) a ser conectado (opcional).
+Tipo de Resposta
+200 - application/json
+
+A resposta é do tipo object.

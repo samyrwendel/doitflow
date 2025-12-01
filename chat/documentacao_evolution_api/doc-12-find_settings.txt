@@ -1,0 +1,48 @@
+Aqui está a documentação completa em formato Markdown para a página "Find Settings" da Evolution API:
+
+MarkDown
+
+# Find Settings - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para buscar as configurações de uma instância existente na Evolution API.
+
+### Método
+**GET**
+
+### Endpoint
+`/settings/find/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request GET \
+  --url https://{server-url}/settings/find/{instance} \
+  --header 'apikey: <api-key>'
+Respostas
+Sucesso (200)
+Código: 200
+
+JSON
+
+{
+  "reject_call": true,
+  "groups_ignore": true,
+  "always_online": true,
+  "read_messages": true,
+  "read_status": true,
+  "sync_full_history": false
+}
+Erro (404)
+Código: 404
+
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância para buscar as configurações.
+Tipo de Resposta
+200 - application/json
+
+A resposta é do tipo object.

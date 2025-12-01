@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* === TEMA CLARO (Light Mode) === */
+    /* Fundo e superfícies - Tons de cinza com excelente contraste */
+    --background: 220 15% 68%;         /* Cinza médio-escuro (#a5abb4) - 20% mais escuro que 85% */
+    --foreground: 222 47% 11%;         /* Texto principal: quase preto azulado (#111827) */
+    
+    /* Cards e containers */
+    --card: 0 0% 100%;                 /* Branco para cards se destacarem (#ffffff) */
+    --card-foreground: 222 47% 11%;    /* Texto em cards: preto azulado */
+    
+    /* Popovers e dropdowns */
+    --popover: 0 0% 100%;              /* Branco para popovers */
+    --popover-foreground: 222 47% 11%; /* Texto: preto azulado */
+    
+    /* Cores primárias - Azul profundo elegante */
+    --primary: 221 83% 53%;            /* Azul vibrante (#2563eb) */
+    --primary-foreground: 0 0% 100%;   /* Texto sobre primário: branco */
+    
+    /* Cores secundárias - Cinza suave */
+    --secondary: 220 14% 96%;          /* Cinza muito claro (#f1f5f9) */
+    --secondary-foreground: 222 47% 11%; /* Texto: preto azulado */
+    
+    /* Muted (elementos desabilitados/secundários) */
+    --muted: 220 14% 94%;              /* Cinza muito claro */
+    --muted-foreground: 215 16% 40%;   /* Texto médio (#475569) - mais escuro para contraste */
+    
+    /* Accent (hover states, highlights) */
+    --accent: 220 18% 92%;             /* Cinza claro para hover (#eef1f6) */
+    --accent-foreground: 222 47% 11%;  /* Texto: preto azulado */
+    
+    /* Destrutivo (perigo, exclusão) */
+    --destructive: 0 84% 60%;          /* Vermelho vibrante */
+    --destructive-foreground: 0 0% 100%; /* Texto: branco */
+    
+    /* Bordas e inputs */
+    --border: 220 13% 80%;             /* Borda cinza média-escura (#c4cad4) */
+    --input: 0 0% 100%;                /* Input com fundo branco */
+    --input-bg: 220 15% 95%;           /* Fundo do input: 40% mais claro que background (#eff1f3) */
+    --ring: 221 83% 53%;               /* Focus ring: azul primário */
+    
+    --radius: 0.5rem;
+  }
+
+  /* === TEMA ESCURO (Dark Mode) === */
+  .dark {
+    /* Fundo e superfícies - Cinza escuro profundo */
+    --background: 222 47% 11%;         /* Quase preto azulado (#111827) */
+    --foreground: 210 40% 98%;         /* Texto principal: branco suave (#f8fafc) */
+    
+    /* Cards e containers */
+    --card: 217 33% 17%;               /* Cinza escuro levemente azulado (#1e293b) */
+    --card-foreground: 210 40% 98%;    /* Texto: branco suave */
+    
+    /* Popovers e dropdowns */
+    --popover: 217 33% 17%;            /* Cinza escuro azulado */
+    --popover-foreground: 210 40% 98%; /* Texto: branco suave */
+    
+    /* Cores primárias - Azul brilhante para contraste */
+    --primary: 217 91% 60%;            /* Azul claro vibrante (#3b82f6) */
+    --primary-foreground: 222 47% 11%; /* Texto sobre primário: preto azulado */
+    
+    /* Cores secundárias - Cinza médio */
+    --secondary: 215 28% 17%;          /* Cinza escuro (#1e293b) */
+    --secondary-foreground: 210 40% 98%; /* Texto: branco suave */
+    
+    /* Muted (elementos desabilitados/secundários) */
+    --muted: 215 28% 17%;              /* Cinza escuro */
+    --muted-foreground: 215 20% 65%;   /* Texto médio-claro (#94a3b8) */
+    
+    /* Accent (hover states, highlights) */
+    --accent: 215 28% 17%;             /* Cinza escuro para hover */
+    --accent-foreground: 210 40% 98%;  /* Texto: branco suave */
+    
+    /* Destrutivo (perigo, exclusão) */
+    --destructive: 0 72% 51%;          /* Vermelho mais saturado (#dc2626) */
+    --destructive-foreground: 210 40% 98%; /* Texto: branco suave */
+    
+    /* Bordas e inputs */
+    --border: 215 25% 27%;             /* Borda cinza média (#334155) */
+    --input: 215 25% 27%;              /* Input border: igual à borda */
+    --ring: 217 91% 60%;               /* Focus ring: azul primário */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Hide all scrollbars globally */
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  *::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Scrollbar completamente invisível */
+  .scrollbar-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* Scrollbar fina e discreta */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
+  }
+}
+
+/* Glass effect - Efeito vidro para modo claro e escuro */
+.glass-card {
+  @apply backdrop-blur-md border shadow-lg;
+}
+
+/* Tema claro - vidro com fundo cinza translúcido */
+:root .glass-card {
+  @apply bg-gray-50/95 border-gray-300/60;
+}
+
+/* Tema escuro - vidro com fundo escuro translúcido */
+.dark .glass-card {
+  @apply bg-gray-900/80 border-gray-700/50;
+}
+
+.glass-surface {
+  @apply backdrop-blur-sm border;
+}
+
+:root .glass-surface {
+  @apply bg-gray-100/80 border-gray-300/40;
+}
+
+.dark .glass-surface {
+  @apply bg-gray-800/60 border-gray-700/30;
+}
+
+/* Animation utilities */
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 1000px 100%;
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 1000px 100%;
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
+
+/* Chat message styles */
+.chat-message {
+  @apply max-w-[80%] rounded-lg px-4 py-2 mb-2;
+}
+
+.chat-message.user {
+  @apply bg-primary text-primary-foreground ml-auto;
+}
+
+.chat-message.assistant {
+  @apply bg-secondary text-secondary-foreground mr-auto;
+}
+
+/* Transcription progress */
+.progress-fill {
+  @apply bg-primary h-full rounded-full transition-all duration-300 ease-out;
+}
+
+/* RAG item styles */
+.rag-item {
+  @apply p-3 rounded-lg border border-border hover:bg-accent/50 transition-colors cursor-pointer;
+}
+
+.rag-item.active {
+  @apply bg-accent border-primary;
+}
+
+/* Context Window Visualizer styles */
+.context-grid {
+  display: grid;
+  gap: 2px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+}
+
+.dark .context-grid {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.context-block {
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.context-block:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

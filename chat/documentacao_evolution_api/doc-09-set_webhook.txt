@@ -1,0 +1,64 @@
+Aqui está a documentação completa em formato Markdown para a página "Set Webhook" da Evolution API:
+
+MarkDown
+
+# Set Webhook - Evolution API Documentation
+
+![light logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover.png)
+![dark logo](https://mintlify.s3.us-west-1.amazonaws.com/atendai-eb1f2775/images/brand/cover-white.png)
+
+## Introdução
+Endpoint para definir um webhook para uma instância existente na Evolution API.
+
+### Método
+**POST**
+
+### Endpoint
+`/webhook/set/{instance}`
+
+### Exemplo de cURL
+```bash
+curl --request POST \
+  --url https://{server-url}/webhook/set/{instance} \
+  --header 'Content-Type: application/json' \
+  --header 'apikey: <api-key>' \
+  --data '{
+    "enabled": true,
+    "url": "<string>",
+    "webhookByEvents": true,
+    "webhookBase64": true,
+    "events": [
+      "APPLICATION_STARTUP"
+    ]
+  }'
+Respostas
+Sucesso (201)
+Código: 201
+
+JSON
+
+{
+  "webhook": {
+    "instanceName": "teste-docs",
+    "webhook": {
+      "url": "https://example.com",
+      "events": [
+        "APPLICATION_STARTUP"
+      ],
+      "enabled": true
+    }
+  }
+}
+Erro (404)
+Código: 404
+
+Autorização
+apikey (string) - requerido: Sua chave de autorização no cabeçalho.
+Parâmetros de Caminho
+instance (string) - requerido: Nome da instância para a qual o webhook está sendo definido.
+Tipo de Body
+application/json
+Tipo de Resposta
+201 - application/json
+
+A resposta é do tipo object.

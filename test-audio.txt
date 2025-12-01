@@ -1,0 +1,8 @@
+Este é um arquivo de teste para simular um áudio sobre agendamento.
+Hoje vamos falar sobre agendamento de consultas médicas.
+O sistema de agendamento permite marcar consultas online.
+Para agendar uma consulta, acesse o portal do paciente.
+Escolha a especialidade médica desejada.
+Selecione o médico de sua preferência.
+Escolha a data e horário disponível.
+Confirme o agendamento e receba a confirmação por email.

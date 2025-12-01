@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Storage Completo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .data-item { background: #f5f5f5; padding: 10px; margin: 5px 0; border-radius: 3px; }
+        pre { background: #f0f0f0; padding: 10px; border-radius: 3px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>Debug Completo do Storage</h1>
+    
+    <div class="section">
+        <h2>1. LocalStorage</h2>
+        <div id="localStorage-output"></div>
+    </div>
+    
+    <div class="section">
+        <h2>2. IndexedDB - Instâncias</h2>
+        <div id="indexeddb-instances"></div>
+    </div>
+    
+    <div class="section">
+        <h2>3. IndexedDB - Configurações</h2>
+        <div id="indexeddb-settings"></div>
+    </div>
+    
+    <script>
+        // Debug localStorage
+        function debugLocalStorage() {
+            const output = document.getElementById('localStorage-output');
+            const configData = localStorage.getItem('enviador_config');
+            
+            if (configData) {
+                try {
+                    const parsed = JSON.parse(configData);
+                    output.innerHTML = `
+                        <div class="data-item">
+                            <h3>Configuração encontrada:</h3>
+                            <pre>${JSON.stringify(parsed, null, 2)}</pre>
+                        </div>
+                    `;
+                } catch (e) {
+                    output.innerHTML = `<p>Erro ao parsear dados: ${e.message}</p>`;
+                }
+            } else {
+                output.innerHTML = '<p>Nenhuma configuração encontrada no localStorage.</p>';
+            }
+        }
+        
+        // Debug IndexedDB
+        async function debugIndexedDB() {
+            const instancesOutput = document.getElementById('indexeddb-instances');
+            const settingsOutput = document.getElementById('indexeddb-settings');
+            
+            try {
+                const dbRequest = indexedDB.open('EvolutionDB', 1);
+                
+                dbRequest.onsuccess = async function(event) {
+                    const db = event.target.result;
+                    
+                    // Debug instâncias
+                    if (db.objectStoreNames.contains('instances')) {
+                        const transaction1 = db.transaction(['instances'], 'readonly');
+                        const store1 = transaction1.objectStore('instances');
+                        const request1 = store1.getAll();
+                        
+                        request1.onsuccess = function() {
+                            const instances = request1.result;
+                            
+                            if (instances.length === 0) {
+                                instancesOutput.innerHTML = '<p>Nenhuma instância encontrada.</p>';
+                            } else {
+                                let html = `<p>Total de instâncias: ${instances.length}</p>`;
+                                instances.forEach((instance, index) => {
+                                    html += `
+                                        <div class="data-item">
+                                            <h4>Instância ${index + 1}</h4>
+                                            <pre>${JSON.stringify(instance, null, 2)}</pre>
+                                        </div>
+                                    `;
+                                });
+                                instancesOutput.innerHTML = html;
+                            }
+                        };
+                    } else {
+                        instancesOutput.innerHTML = '<p>Tabela "instances" não existe.</p>';
+                    }
+                    
+                    // Debug configurações
+                    if (db.objectStoreNames.contains('instance_settings')) {
+                        const transaction2 = db.transaction(['instance_settings'], 'readonly');
+                        const store2 = transaction2.objectStore('instance_settings');
+                        const request2 = store2.getAll();
+                        
+                        request2.onsuccess = function() {
+                            const settings = request2.result;
+                            
+                            if (settings.length === 0) {
+                                settingsOutput.innerHTML = '<p>Nenhuma configuração encontrada.</p>';
+                            } else {
+                                let html = `<p>Total de configurações: ${settings.length}</p>`;
+                                settings.forEach((setting, index) => {
+                                    html += `
+                                        <div class="data-item">
+                                            <h4>Configuração ${index + 1}</h4>
+                                            <pre>${JSON.stringify(setting, null, 2)}</pre>
+                                        </div>
+                                    `;
+                                });
+                                settingsOutput.innerHTML = html;
+                            }
+                        };
+                    } else {
+                        settingsOutput.innerHTML = '<p>Tabela "instance_settings" não existe.</p>';
+                    }
+                };
+                
+                dbRequest.onerror = function() {
+                    instancesOutput.innerHTML = '<p>Erro ao abrir banco: ' + dbRequest.error + '</p>';
+                    settingsOutput.innerHTML = '<p>Erro ao abrir banco: ' + dbRequest.error + '</p>';
+                };
+                
+                dbRequest.onupgradeneeded = function() {
+                    instancesOutput.innerHTML = '<p>Banco de dados não existe.</p>';
+                    settingsOutput.innerHTML = '<p>Banco de dados não existe.</p>';
+                };
+                
+            } catch (error) {
+                instancesOutput.innerHTML = '<p>Erro: ' + error.message + '</p>';
+                settingsOutput.innerHTML = '<p>Erro: ' + error.message + '</p>';
+            }
+        }
+        
+        // Executar quando a página carregar
+        window.onload = function() {
+            debugLocalStorage();
+            debugIndexedDB();
+        };
+    </script>
+</body>
+</html>

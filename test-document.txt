@@ -1,0 +1,35 @@
+DOCUMENTO DE TESTE - SISTEMA RAG COM GEMINI
+
+Introdução
+Este é um documento de teste para validar o sistema de upload e processamento de documentos.
+O sistema agora suporta múltiplos formatos: PDF, TXT, DOC, DOCX, XLS e XLSX.
+
+Funcionalidades Principais
+1. Extração de texto automatizada
+2. Divisão inteligente em chunks
+3. Geração de embeddings com Google Gemini
+4. Integração com sistema RAG existente
+5. Busca semântica avançada
+
+Benefícios do Sistema
+- Processar documentos além de áudio/vídeo
+- Melhor mensuração de custos e uso
+- Base de conhecimento mais ampla
+- Respostas mais precisas no chat
+
+Informações Técnicas
+O sistema utiliza as seguintes bibliotecas:
+- pdf-parse para arquivos PDF
+- mammoth para documentos Word (DOC/DOCX)
+- xlsx para planilhas Excel
+
+Casos de Uso
+1. Upload de manuais técnicos em PDF
+2. Importação de políticas empresariais em Word
+3. Análise de relatórios em planilhas Excel
+4. Documentação de projetos em arquivos de texto
+
+Conclusão
+Este documento será processado, dividido em chunks e transformado em uma base de conhecimento
+utilizável pelo sistema de chat com RAG. A busca semântica permitirá encontrar informações
+relevantes mesmo quando a consulta não usa exatamente as mesmas palavras do documento original.

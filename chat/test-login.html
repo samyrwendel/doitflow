@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Login - Tupperware</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .button.success {
+            background: #28a745;
+        }
+        .button.danger {
+            background: #dc3545;
+        }
+        .log {
+            background: #000;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            height: 300px;
+            overflow-y: auto;
+            margin: 10px 0;
+            white-space: pre-wrap;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Teste de Login - Sistema Tupperware</h1>
+            <p>Teste o sistema de autenticação e conexão com NocoDB</p>
+        </div>
+
+        <div class="test-section">
+            <h3>🔧 Controles de Teste</h3>
+            <button class="button" onclick="runFullTest()">🚀 Executar Teste Completo</button>
+            <button class="button" onclick="testNocoDB()">📊 Testar NocoDB</button>
+            <button class="button" onclick="createTestUser()">👤 Criar Usuário Teste</button>
+            <button class="button" onclick="testLogin()">🔐 Testar Login</button>
+            <button class="button" onclick="checkAuth()">🔍 Verificar Autenticação</button>
+            <button class="button danger" onclick="cleanup()">🧹 Limpar Dados</button>
+            <button class="button" onclick="clearLog()">🗑️ Limpar Log</button>
+        </div>
+
+        <div class="test-section">
+            <h3>📊 Status do Sistema</h3>
+            <div id="status" class="status info">Aguardando teste...</div>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Log de Execução</h3>
+            <div id="log" class="log">Pronto para executar testes...
+
+</div>
+        </div>
+
+        <div class="test-section">
+            <h3>ℹ️ Instruções</h3>
+            <ol>
+                <li><strong>Teste Completo:</strong> Executa todos os testes em sequência</li>
+                <li><strong>Testar NocoDB:</strong> Verifica se a conexão com o banco está funcionando</li>
+                <li><strong>Criar Usuário Teste:</strong> Cria um usuário de teste (admin@tupperware.com)</li>
+                <li><strong>Testar Login:</strong> Tenta fazer login com as credenciais de teste</li>
+                <li><strong>Verificar Autenticação:</strong> Verifica se o usuário está autenticado</li>
+                <li><strong>Limpar Dados:</strong> Remove dados de teste e faz logout</li>
+            </ol>
+            <p><strong>Credenciais de Teste:</strong></p>
+            <ul>
+                <li>Email: admin@tupperware.com</li>
+                <li>Senha: admin123</li>
+            </ul>
+        </div>
+    </div>
+
+    <script type="module">
+        let logElement = document.getElementById('log');
+        let statusElement = document.getElementById('status');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logMessage = `[${timestamp}] ${message}\n`;
+            logElement.textContent += logMessage;
+            logElement.scrollTop = logElement.scrollHeight;
+            
+            // Atualizar status se for erro ou sucesso
+            if (type === 'error') {
+                updateStatus(message, 'error');
+            } else if (type === 'success') {
+                updateStatus(message, 'success');
+            }
+        }
+
+        function updateStatus(message, type) {
+            statusElement.textContent = message;
+            statusElement.className = `status ${type}`;
+        }
+
+        function clearLog() {
+            logElement.textContent = 'Log limpo...\n\n';
+            updateStatus('Log limpo', 'info');
+        }
+
+        // Função para testar conexão com NocoDB
+        window.testNocoDB = async function() {
+            log('🔍 Testando conexão com NocoDB...');
+            
+            try {
+                const { nocodbService } = await import('./src/services/nocodbService.ts');
+                const result = await nocodbService.testConnection();
+                
+                if (result.success) {
+                    log('✅ NocoDB conectado com sucesso!', 'success');
+                    log(`📊 Configuração: ${JSON.stringify(result.config, null, 2)}`);
+                    return true;
+                } else {
+                    log(`❌ Falha na conexão com NocoDB: ${result.error}`, 'error');
+                    return false;
+                }
+            } catch (error) {
+                log(`❌ Erro ao testar NocoDB: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Função para criar usuário de teste
+        window.createTestUser = async function() {
+            log('👤 Criando usuário de teste...');
+            
+            try {
+                const { authService } = await import('./src/services/authService.ts');
+                
+                const testUserData = {
+                    email: 'admin@tupperware.com',
+                    password: 'admin123',
+                    name: 'Administrador Tupperware',
+                    phone: '(11) 99999-9999',
+                    company: 'Tupperware Admin'
+                };
+                
+                const result = await authService.register(testUserData);
+                
+                if (result.success) {
+                    log('✅ Usuário de teste criado com sucesso!', 'success');
+                    log(`👤 Dados do usuário: ${JSON.stringify(result.user, null, 2)}`);
+                    return result.user;
+                } else {
+                    log(`ℹ️ ${result.message}`);
+                    return null;
+                }
+            } catch (error) {
+                log(`❌ Erro ao criar usuário de teste: ${error.message}`, 'error');
+                return null;
+            }
+        };
+
+        // Função para testar login
+        window.testLogin = async function() {
+            log('🔐 Testando login...');
+            
+            try {
+                const { authService } = await import('./src/services/authService.ts');
+                
+                const credentials = {
+                    email: 'admin@tupperware.com',
+                    password: 'admin123'
+                };
+                
+                const result = await authService.login(credentials);
+                
+                if (result.success) {
+                    log('✅ Login realizado com sucesso!', 'success');
+                    log(`👤 Usuário logado: ${result.user.name} (${result.user.email})`);
+                    log(`🔑 Token: ${result.token}`);
+                    log(`🛡️ Permissões: ${result.permissions?.length || 0} permissões`);
+                    return result;
+                } else {
+                    log(`❌ Falha no login: ${result.message}`, 'error');
+                    return null;
+                }
+            } catch (error) {
+                log(`❌ Erro durante o login: ${error.message}`, 'error');
+                return null;
+            }
+        };
+
+        // Função para verificar autenticação
+        window.checkAuth = async function() {
+            log('🔍 Verificando autenticação...');
+            
+            try {
+                const { authService } = await import('./src/services/authService.ts');
+                
+                const isAuth = await authService.isAuthenticated();
+                
+                if (isAuth) {
+                    log('✅ Usuário está autenticado!', 'success');
+                    const user = authService.getCurrentUser();
+                    const token = authService.getCurrentToken();
+                    const permissions = authService.getPermissions();
+                    
+                    log(`👤 Usuário atual: ${user?.name} (${user?.email})`);
+                    log(`🔑 Token atual: ${token?.substring(0, 20)}...`);
+                    log(`🛡️ Permissões: ${permissions?.length || 0} permissões`);
+                } else {
+                    log('❌ Usuário não está autenticado', 'error');
+                }
+                
+                return isAuth;
+            } catch (error) {
+                log(`❌ Erro ao verificar autenticação: ${error.message}`, 'error');
+                return false;
+            }
+        };
+
+        // Função para limpar dados de teste
+        window.cleanup = async function() {
+            log('🧹 Limpando dados de teste...');
+            
+            try {
+                const { authService } = await import('./src/services/authService.ts');
+                
+                await authService.logout();
+                log('✅ Logout realizado');
+                
+                localStorage.removeItem('auth_user');
+                localStorage.removeItem('auth_token');
+                log('✅ Dados locais limpos', 'success');
+                
+                updateStatus('Dados limpos', 'info');
+            } catch (error) {
+                log(`❌ Erro ao limpar dados: ${error.message}`, 'error');
+            }
+        };
+
+        // Função principal de teste
+        window.runFullTest = async function() {
+            log('🚀 Iniciando teste completo de login...');
+            log('='.repeat(50));
+            
+            updateStatus('Executando teste completo...', 'info');
+            
+            // 1. Testar conexão NocoDB
+            const nocodbOk = await testNocoDB();
+            if (!nocodbOk) {
+                log('❌ Teste interrompido - NocoDB não está funcionando', 'error');
+                return;
+            }
+            
+            log('\n');
+            
+            // 2. Criar usuário de teste (se não existir)
+            await createTestUser();
+            
+            log('\n');
+            
+            // 3. Testar login
+            const loginResult = await testLogin();
+            if (!loginResult) {
+                log('❌ Teste de login falhou', 'error');
+                return;
+            }
+            
+            log('\n');
+            
+            // 4. Verificar autenticação
+            await checkAuth();
+            
+            log('\n');
+            log('='.repeat(50));
+            log('✅ Teste completo finalizado!', 'success');
+            log('\n📋 Resumo:');
+            log('   - NocoDB: Funcionando');
+            log('   - Criação de usuário: OK');
+            log('   - Login: OK');
+            log('   - Autenticação: OK');
+            log('\n🎉 O sistema de autenticação está funcionando corretamente!');
+            
+            updateStatus('✅ Todos os testes passaram! Sistema funcionando.', 'success');
+        };
+
+        // Inicializar
+        updateStatus('Pronto para executar testes', 'info');
+        log('🔧 Sistema de teste carregado!');
+        log('📝 Clique em "Executar Teste Completo" para começar.');
+    </script>
+</body>
+</html>

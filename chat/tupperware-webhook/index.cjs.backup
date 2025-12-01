@@ -1,0 +1,162 @@
+const fs = require('fs');
+const path = require('path');
+const startupLogPath = path.join(__dirname, 'startup-error.log');
+
+try {
+    const express = require('express');
+    const cors = require('cors');
+
+    const app = express();
+    app.get('/ping', (req, res) => res.send('pong'));
+
+    const port = 3007;
+    const dbPath = path.join(__dirname, 'db.json');
+    const errorLogPath = path.join(__dirname, 'error.log');
+
+    // Limpa o log de erro de inicialização antigo
+    if (fs.existsSync(startupLogPath)) {
+        fs.unlinkSync(startupLogPath);
+    }
+
+    const logError = (error) => {
+        const timestamp = new Date().toISOString();
+        const logMessage = `[${timestamp}] ${error.stack || error}\n`;
+        fs.appendFileSync(errorLogPath, logMessage);
+    };
+
+    app.use(cors());
+    app.use(express.json());
+
+    const readDb = () => {
+        try {
+            if (fs.existsSync(dbPath)) {
+                const data = fs.readFileSync(dbPath, 'utf8');
+                return JSON.parse(data);
+            }
+            return { messages: [] };
+        } catch (error) {
+            logError(error);
+            console.error('Erro lendo o banco de dados:', error);
+            return { messages: [] };
+        }
+    };
+
+    const writeDb = (data) => {
+        try {
+            fs.writeFileSync(dbPath, JSON.stringify(data, null, 2), 'utf8');
+        } catch (error) {
+            logError(error);
+            console.error('Erro escrevendo no banco de dados:', error);
+        }
+    };
+
+    app.get('/messages', (req, res) => {
+        console.log('[Webhook Server] Recebida requisição GET /messages');
+        try {
+            const db = readDb();
+            const sortedMessages = db.messages.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            res.json(sortedMessages);
+        } catch (error) {
+            logError(error);
+            res.status(500).send('Erro interno do servidor');
+        }
+    });
+
+    app.post('/messages', (req, res) => {
+        console.log('[Webhook Server] Recebida requisição POST /messages');
+        try {
+            const db = readDb();
+            const { id, remoteJid, body } = req.body;
+
+            if (!id || !remoteJid) {
+                return res.status(400).json({ message: 'ID da mensagem e remoteJid são obrigatórios.' });
+            }
+
+            const newMessage = {
+                id,
+                remoteJid,
+                body,
+                status: 'sent',
+                timestamp: new Date().toISOString(),
+            };
+
+            if (!db.messages.some(msg => msg.id === id)) {
+                db.messages.push(newMessage);
+                writeDb(db);
+                console.log(`[Webhook Server] Mensagem registrada: ${id}`);
+                res.status(201).json(newMessage);
+            } else {
+                const msgIndex = db.messages.findIndex(msg => msg.id === id);
+                if (db.messages[msgIndex].status === 'pending') {
+                    db.messages[msgIndex].status = 'sent';
+                    db.messages[msgIndex].updatedAt = new Date().toISOString();
+                }
+                writeDb(db);
+                res.status(200).json({ message: 'Mensagem já registrada.' });
+            }
+        } catch (error) {
+            logError(error);
+            res.status(500).send('Erro interno do servidor');
+        }
+    });
+
+    app.post('/webhook', (req, res) => {
+        console.log('[Webhook Server] Recebida requisição POST /webhook');
+        try {
+            const event = req.body;
+            console.log('[Webhook Server] Evento recebido:', JSON.stringify(event, null, 2));
+
+            if (event.event === 'messages.update' && event.data?.status) {
+                const messageId = event.data.keyId;
+                const status = event.data.status;
+
+                if (messageId) {
+                    const db = readDb();
+                    const messageIndex = db.messages.findIndex(msg => msg.id === messageId);
+
+                    if (messageIndex !== -1) {
+                        const message = db.messages[messageIndex];
+                        message.status = status;
+                        message.updatedAt = new Date().toISOString(); // Mantém para informações gerais de "última atualização"
+
+                        if ((status === 'delivered' || status === 'DELIVERY_ACK') && !message.deliveredAt) {
+                            message.deliveredAt = new Date().toISOString();
+                        } else if ((status === 'read' || status === 'READ') && !message.readAt) {
+                            message.readAt = new Date().toISOString();
+                        }
+                        
+                        writeDb(db);
+                        console.log(`[Webhook Server] Status da mensagem ${messageId} atualizado para: ${status}`);
+                    } else {
+                        console.log(`[Webhook Server] Recebido status para mensagem não registrada: ${messageId}`);
+                    }
+                }
+            }
+
+            if (event.event === 'messages.upsert' && event.data?.message) {
+                console.log('[Webhook Server] Nova mensagem recebida:', event.data.message);
+            }
+
+            res.sendStatus(200);
+        } catch (error) {
+            logError(error);
+            res.status(500).send('Erro interno do servidor');
+        }
+    });
+
+    app.listen(port, () => {
+        if (!fs.existsSync(dbPath)) {
+            writeDb({ messages: [] });
+        }
+        if (fs.existsSync(errorLogPath)) {
+            fs.unlinkSync(errorLogPath);
+        }
+        console.log(`[Webhook Server] tupperware-webhook rodando na porta ${port}`);
+    });
+
+} catch (error) {
+    const timestamp = new Date().toISOString();
+    const logMessage = `[${timestamp}] FATAL STARTUP ERROR: ${error.stack || error}\n`;
+    fs.writeFileSync(startupLogPath, logMessage);
+    process.exit(1);
+}

@@ -1,0 +1,15 @@
+node_modules
+.env
+.env.local
+dist
+logs
+*.log
+npm-debug.log*
+.DS_Store
+.vscode/settings.json
+database/*.db
+_demo_2/
+*.zip
+*.mp3
+*.wav
+transc/

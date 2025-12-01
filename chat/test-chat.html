@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste Chat Debug</title>
+</head>
+<body>
+    <h1>Teste de Debug do Chat</h1>
+    <p>Abra o console do navegador e vá para http://localhost:5173</p>
+    <p>Envie uma mensagem e verifique os logs:</p>
+    <ul>
+        <li>📤 Enviando para Groq API</li>
+        <li>📥 Resposta da API</li>
+        <li>📊 Dados recebidos da API</li>
+        <li>🤖 Mensagem do assistente criada</li>
+    </ul>
+    
+    <script>
+        // Teste simples para verificar se o React está funcionando
+        console.log('🔍 Teste de debug carregado');
+        
+        // Verificar se há elementos React na página
+        setTimeout(() => {
+            const reactElements = document.querySelectorAll('[data-reactroot], [id="root"]');
+            console.log('🔍 Elementos React encontrados:', reactElements.length);
+            
+            const chatElements = document.querySelectorAll('[class*="chat"], [class*="message"]');
+            console.log('🔍 Elementos de chat encontrados:', chatElements.length);
+        }, 2000);
+    </script>
+</body>
+</html>

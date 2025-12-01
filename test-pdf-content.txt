@@ -1,0 +1,12 @@
+MANUAL DO SISTEMA RAG
+
+Capítulo 1: Introdução
+Este manual descreve o funcionamento do sistema de Retrieval-Augmented Generation (RAG).
+
+Capítulo 2: Componentes
+- Google Gemini para embeddings semânticos
+- Groq para processamento de linguagem natural
+- SQLite para persistência de dados
+
+Capítulo 3: Custos
+O sistema calcula automaticamente os custos de embeddings e inferência.

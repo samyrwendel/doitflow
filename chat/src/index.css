@@ -1,0 +1,324 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 34%; /* Compatível com o design existente */
+    --foreground: 0 0% 100%;
+    --card: 0 0% 34%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 34%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 217 91% 60%; /* Azul dos botões existentes */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 40%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 0% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 40%;
+    --input: 0 0% 34%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 0 0% 34%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 34%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 34%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 40%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 0% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 40%;
+    --input: 0 0% 34%;
+    --ring: 217 91% 60%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.95);
+  background: #2a2a2a;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Designer Color Palette - Hierarchical Usage */
+  --color-primary: #808080;     /* Primary elements, headers, main actions */
+  --color-secondary: #727272;   /* Secondary elements, subheadings */
+  --color-tertiary: #656565;    /* Tertiary elements, borders, dividers */
+  --color-background: #575757;  /* Card backgrounds, panels */
+  --color-surface: #2a2a2a;     /* Main background, deepest level */
+  
+  /* Semantic color applications */
+  --glass-primary: rgba(128, 128, 128, 0.25);
+  --glass-secondary: rgba(114, 114, 114, 0.12);
+  --glass-surface: rgba(101, 101, 101, 0.08);
+  --glass-active: rgba(128, 128, 128, 0.35);
+  --border-primary: rgba(128, 128, 128, 0.3);
+  --border-secondary: rgba(114, 114, 114, 0.25);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --text-active: rgba(255, 255, 255, 1.0);
+}
+
+/* Custom Scrollbar Styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+
+.scrollbar-thumb-transparent {
+  scrollbar-color: transparent transparent;
+}
+
+.scrollbar-track-transparent {
+  scrollbar-track-color: transparent;
+}
+
+.hover\:scrollbar-thumb-white\/20:hover {
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+/* Webkit scrollbar styles for better browser support */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.scrollbar-thin:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Hide scrollbar completely */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+/* Tab Icon Animations */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(3px) rotate(5deg);
+  }
+  50% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-2px) rotate(-3deg);
+  }
+  100% {
+    transform: translateX(0px) rotate(0deg);
+  }
+}
+
+/* Apply animations to active tab icons */
+[data-state="active"] .settings-icon {
+  animation: spin 0.6s ease-in-out;
+}
+
+[data-state="active"] .send-icon {
+  animation: fly 0.8s ease-in-out;
+}
+
+[data-state="active"] .dashboard-icon {
+  animation: spin 0.6s ease-in-out;
+}
+
+/* Custom border radius for tabs */
+.rounded-14px {
+  border-radius: 14px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  color: var(--text-primary);
+  background: var(--color-surface);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-attachment: fixed;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  font-feature-settings: "liga" 1, "kern" 1;
+  font-variant-ligatures: common-ligatures;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Mobile viewport optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  /* Ensure proper touch targets */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability on mobile */
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  /* Better spacing for mobile */
+  .p-4 {
+    padding: 0.75rem;
+  }
+  
+  .gap-4 {
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Extra small screens */
+  .p-4 {
+    padding: 0.5rem;
+  }
+  
+  .gap-4 {
+    gap: 0.5rem;
+  }
+  
+  /* Ensure cards don't overflow */
+  .max-w-full {
+    max-width: 100%;
+  }
+}
+
+/* Global Cleartype and Sharpness */
+* {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+*:before,
+*:after {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+
+
+/* Glassmorphism Utilities - Designer Color Palette */
+.glass {
+  background: var(--glass-surface);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-secondary);
+  border-radius: 16px;
+}
+
+.glass-card {
+  background: var(--glass-secondary);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-primary);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: var(--glass-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.glass-input {
+  background: var(--glass-primary);
+  border-color: var(--color-primary);
+}
+
+/* Scrollbar invisível */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}

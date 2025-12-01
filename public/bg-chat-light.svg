@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <pattern id="whatsapp-light" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M30 30 L32 28 L34 30 L32 32 Z" fill="#ffffff" opacity="0.6"/>
+      <path d="M65 25 L67 23 L69 25 L67 27 Z" fill="#ffffff" opacity="0.6"/>
+      <path d="M48 60 L50 58 L52 60 L50 62 Z" fill="#ffffff" opacity="0.6"/>
+      <path d="M20 70 L22 68 L24 70 L22 72 Z" fill="#ffffff" opacity="0.6"/>
+      <path d="M75 75 L77 73 L79 75 L77 77 Z" fill="#ffffff" opacity="0.6"/>
+      <path d="M40 15 L42 13 L44 15 L42 17 Z" fill="#ffffff" opacity="0.6"/>
+      <path d="M85 45 L87 43 L89 45 L87 47 Z" fill="#ffffff" opacity="0.6"/>
+      <path d="M15 45 L17 43 L19 45 L17 47 Z" fill="#ffffff" opacity="0.6"/>
+    </pattern>
+  </defs>
+  <rect width="100" height="100" fill="url(#whatsapp-light)"/>
+</svg>

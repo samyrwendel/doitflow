@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug HelloWorld Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #logs {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Debug HelloWorld Detection</h1>
+        
+        <div class="test-section">
+            <h3>1. Teste da Função detectSendCommand</h3>
+            <input type="text" id="testInput" placeholder="Digite 'helloworld' para testar" style="width: 300px;">
+            <button onclick="testDetection()">Testar Detecção</button>
+            <div id="detectionResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>2. Simulação do Fluxo Completo</h3>
+            <button onclick="simulateFullFlow()">Simular Fluxo Completo</button>
+            <div id="flowResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>3. Verificação de Configurações</h3>
+            <button onclick="checkConfigurations()">Verificar Configurações</button>
+            <div id="configResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>4. Logs do Console</h3>
+            <button onclick="clearLogs()">Limpar Logs</button>
+            <div id="logs"></div>
+        </div>
+    </div>
+
+    <script>
+        // Função detectSendCommand copiada do SimpleChatLLM.tsx
+        function detectSendCommand(message) {
+            console.log('🔍 detectSendCommand chamada com:', message);
+            
+            if (!message || typeof message !== 'string') {
+                console.log('❌ Mensagem inválida:', message);
+                return null;
+            }
+
+            const trimmedMessage = message.trim().toLowerCase();
+            console.log('🔍 Mensagem processada:', trimmedMessage);
+
+            // Detecta comando helloworld
+            if (trimmedMessage === 'helloworld') {
+                console.log('✅ Comando helloworld detectado!');
+                return {
+                    type: 'helloworld',
+                    originalMessage: message
+                };
+            }
+
+            // Detecta outros comandos de envio
+            const sendPattern = /^enviar\s+(.+?)\s+para\s+(\d{10,15})$/i;
+            const match = message.match(sendPattern);
+            
+            if (match) {
+                console.log('✅ Comando de envio detectado!');
+                return {
+                    type: 'send',
+                    message: match[1].trim(),
+                    phone: match[2].trim(),
+                    originalMessage: message
+                };
+            }
+
+            console.log('ℹ️ Nenhum comando detectado');
+            return null;
+        }
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const logElement = document.getElementById('logs');
+            const logEntry = document.createElement('div');
+            logEntry.innerHTML = `[${timestamp}] ${message}`;
+            logEntry.style.color = type === 'error' ? 'red' : type === 'success' ? 'green' : 'black';
+            logElement.appendChild(logEntry);
+            logElement.scrollTop = logElement.scrollHeight;
+            
+            // Também loga no console do navegador
+            console.log(message);
+        }
+
+        function testDetection() {
+            const input = document.getElementById('testInput');
+            const result = document.getElementById('detectionResult');
+            const message = input.value;
+
+            log(`🧪 Testando detecção para: "${message}"`);
+
+            try {
+                const detection = detectSendCommand(message);
+                
+                if (detection) {
+                    result.innerHTML = `
+                        <div class="result success">
+                            <strong>✅ Comando Detectado!</strong><br>
+                            Tipo: ${detection.type}<br>
+                            Dados: ${JSON.stringify(detection, null, 2)}
+                        </div>
+                    `;
+                    log(`✅ Comando detectado: ${JSON.stringify(detection)}`, 'success');
+                } else {
+                    result.innerHTML = `
+                        <div class="result error">
+                            <strong>❌ Nenhum Comando Detectado</strong><br>
+                            Mensagem: "${message}"
+                        </div>
+                    `;
+                    log(`❌ Nenhum comando detectado para: "${message}"`, 'error');
+                }
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="result error">
+                        <strong>🚨 Erro na Detecção!</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+                log(`🚨 Erro: ${error.message}`, 'error');
+            }
+        }
+
+        function simulateFullFlow() {
+            const result = document.getElementById('flowResult');
+            log('🔄 Iniciando simulação do fluxo completo...');
+
+            try {
+                // Simula a detecção
+                const detection = detectSendCommand('helloworld');
+                
+                if (detection && detection.type === 'helloworld') {
+                    log('✅ Etapa 1: Detecção bem-sucedida', 'success');
+                    
+                    // Simula a execução da ferramenta
+                    log('🔄 Etapa 2: Simulando execução da HelloWorldTool...');
+                    
+                    const toolResult = {
+                        success: true,
+                        message: 'Hello World! 🌍',
+                        phone: '5567991257171'
+                    };
+                    
+                    log('✅ Etapa 3: Ferramenta executada com sucesso', 'success');
+                    
+                    result.innerHTML = `
+                        <div class="result success">
+                            <strong>✅ Fluxo Completo Simulado!</strong><br>
+                            1. Detecção: OK<br>
+                            2. Execução: OK<br>
+                            3. Resultado: ${JSON.stringify(toolResult, null, 2)}
+                        </div>
+                    `;
+                } else {
+                    result.innerHTML = `
+                        <div class="result error">
+                            <strong>❌ Falha na Detecção</strong><br>
+                            O comando 'helloworld' não foi detectado corretamente.
+                        </div>
+                    `;
+                    log('❌ Falha na detecção do comando helloworld', 'error');
+                }
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="result error">
+                        <strong>🚨 Erro no Fluxo!</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+                log(`🚨 Erro no fluxo: ${error.message}`, 'error');
+            }
+        }
+
+        function checkConfigurations() {
+            const result = document.getElementById('configResult');
+            log('🔧 Verificando configurações...');
+
+            try {
+                // Verifica se estamos no ambiente correto
+                const isLocalhost = window.location.hostname === 'localhost';
+                const port = window.location.port;
+                
+                // Verifica se há variáveis de ambiente (simulação)
+                const hasEnvVars = true; // Assumindo que existem
+                
+                result.innerHTML = `
+                    <div class="result info">
+                        <strong>🔧 Configurações Verificadas</strong><br>
+                        Hostname: ${window.location.hostname}<br>
+                        Port: ${port}<br>
+                        URL Completa: ${window.location.href}<br>
+                        Localhost: ${isLocalhost ? '✅' : '❌'}<br>
+                        Variáveis de Ambiente: ${hasEnvVars ? '✅' : '❌'}
+                    </div>
+                `;
+                
+                log(`✅ Configurações verificadas: localhost=${isLocalhost}, port=${port}`, 'success');
+            } catch (error) {
+                result.innerHTML = `
+                    <div class="result error">
+                        <strong>🚨 Erro na Verificação!</strong><br>
+                        ${error.message}
+                    </div>
+                `;
+                log(`🚨 Erro na verificação: ${error.message}`, 'error');
+            }
+        }
+
+        function clearLogs() {
+            document.getElementById('logs').innerHTML = '';
+            console.clear();
+        }
+
+        // Testes automáticos ao carregar a página
+        window.onload = function() {
+            log('🚀 Debug HelloWorld Detection carregado!');
+            log('📝 Digite "helloworld" no campo de teste e clique em "Testar Detecção"');
+            
+            // Teste automático
+            setTimeout(() => {
+                log('🧪 Executando teste automático...');
+                const autoTest = detectSendCommand('helloworld');
+                if (autoTest) {
+                    log('✅ Teste automático passou!', 'success');
+                } else {
+                    log('❌ Teste automático falhou!', 'error');
+                }
+            }, 1000);
+        };
+
+        // Intercepta logs do console
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.join(' ');
+            if (message.includes('🔍') || message.includes('✅') || message.includes('❌')) {
+                // Já está sendo logado pela função log()
+                return;
+            }
+            log(message);
+        };
+    </script>
+</body>
+</html>
