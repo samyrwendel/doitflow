@@ -847,7 +847,7 @@ function createExpenseRoutes(expenseTracker, authMiddleware) {
   // Listar grupos
   router.get('/groups', authMiddleware, async (req, res) => {
     try {
-      const groups = await expenseTracker.listGroups(req.userId);
+      const groups = await expenseTracker.listGroups(req.user.id);
       res.json(groups);
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -857,7 +857,7 @@ function createExpenseRoutes(expenseTracker, authMiddleware) {
   // Criar grupo
   router.post('/groups', authMiddleware, async (req, res) => {
     try {
-      const group = await expenseTracker.createGroup(req.userId, req.body);
+      const group = await expenseTracker.createGroup(req.user.id, req.body);
       res.json(group);
     } catch (error) {
       res.status(500).json({ error: error.message });
@@ -928,7 +928,7 @@ function createExpenseRoutes(expenseTracker, authMiddleware) {
     try {
       const ride = await expenseTracker.addRide(
         req.params.id,
-        req.userId,
+        req.user.id,
         req.body,
         req.body.image_base64
       );
@@ -943,7 +943,7 @@ function createExpenseRoutes(expenseTracker, authMiddleware) {
     try {
       const ride = await expenseTracker.updateRide(req.params.id, {
         ...req.body,
-        reviewed_by: req.userId
+        reviewed_by: req.user.id
       });
       res.json(ride);
     } catch (error) {
@@ -981,7 +981,7 @@ function createExpenseRoutes(expenseTracker, authMiddleware) {
     try {
       const balance = await expenseTracker.addBalanceRecord(
         req.params.id,
-        req.userId,
+        req.user.id,
         req.body,
         req.body.image_base64
       );
@@ -998,7 +998,7 @@ function createExpenseRoutes(expenseTracker, authMiddleware) {
     try {
       const report = await expenseTracker.generateReport(
         req.params.id,
-        req.userId,
+        req.user.id,
         req.body.start_date,
         req.body.end_date
       );
@@ -1039,7 +1039,7 @@ function createExpenseRoutes(expenseTracker, authMiddleware) {
   // Sincronizar dados de gastos com o RAG
   router.post('/sync-rag', authMiddleware, async (req, res) => {
     try {
-      const ragId = await expenseTracker.updateRAGDocument(req.userId);
+      const ragId = await expenseTracker.updateRAGDocument(req.user.id);
       if (ragId) {
         res.json({ success: true, rag_document_id: ragId, message: 'RAG atualizado com sucesso' });
       } else {
@@ -1053,7 +1053,7 @@ function createExpenseRoutes(expenseTracker, authMiddleware) {
   // Obter conteúdo RAG (preview)
   router.get('/rag-content', authMiddleware, async (req, res) => {
     try {
-      const content = await expenseTracker.generateRAGContent(req.userId);
+      const content = await expenseTracker.generateRAGContent(req.user.id);
       res.json({ content });
     } catch (error) {
       res.status(500).json({ error: error.message });
