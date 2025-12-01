@@ -13,6 +13,7 @@ const xlsx = require('xlsx');
 const { getDatabase } = require('./database/db.cjs');
 const { AuthService, authMiddleware, optionalAuthMiddleware } = require('./auth.cjs');
 const { AgentScheduler, createSchedulerRoutes } = require('./scheduler.cjs');
+const { ExpenseTracker, createExpenseRoutes } = require('./expense-tracker.cjs');
 require('dotenv').config();
 
 // Polyfill para fetch em versões antigas do Node
@@ -23,9 +24,10 @@ if (!globalThis.fetch) {
 const app = express();
 const port = process.env.PORT || 3002;
 
-// Inicializar banco de dados e scheduler
+// Inicializar banco de dados, scheduler e expense tracker
 let db = null;
 let agentScheduler = null;
+let expenseTracker = null;
 
 (async () => {
   try {
@@ -42,6 +44,14 @@ let agentScheduler = null;
         // Iniciar scheduler automaticamente
         agentScheduler.start(60000); // Verificar a cada minuto
         console.log('📅 Sistema de agendamento de agentes inicializado');
+      }
+
+      // Inicializar expense tracker
+      if (db) {
+        expenseTracker = new ExpenseTracker(db);
+        const expenseRoutes = createExpenseRoutes(expenseTracker, authMiddleware);
+        app.use('/api/expenses', expenseRoutes);
+        console.log('💰 Sistema de monitoramento de gastos inicializado');
       }
     }, 2000);
   } catch (error) {
@@ -4184,6 +4194,68 @@ app.get('/api/whatsapp-devices', authMiddleware, async (req, res) => {
     res.json(rows || []);
   } catch (error) {
     console.error('Erro ao listar dispositivos:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Listar grupos WhatsApp de um dispositivo
+app.get('/api/whatsapp-devices/:deviceId/groups', authMiddleware, async (req, res) => {
+  try {
+    const { deviceId } = req.params;
+    const userId = req.user.id;
+
+    // Buscar dispositivo
+    const device = await db.get(
+      'SELECT * FROM whatsapp_devices WHERE id = ? AND user_id = ?',
+      [deviceId, userId]
+    );
+
+    if (!device) {
+      return res.status(404).json({ error: 'Dispositivo não encontrado' });
+    }
+
+    // Buscar URL e API key da Evolution API
+    const evolutionConfig = await getEvolutionApiConfig();
+    if (!evolutionConfig || !evolutionConfig.baseUrl) {
+      return res.status(400).json({ error: 'Evolution API não configurada' });
+    }
+
+    const apiKey = device.api_key || evolutionConfig.apiKey;
+    const url = `${evolutionConfig.baseUrl}/group/fetchAllGroups/${deviceId}?getParticipants=false`;
+
+    console.log(`[WHATSAPP] Buscando grupos do dispositivo ${deviceId}...`);
+
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'apikey': apiKey,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`[WHATSAPP] Erro ao buscar grupos: ${response.status} - ${errorText}`);
+      return res.status(response.status).json({ error: `Erro da Evolution API: ${response.status}` });
+    }
+
+    const groups = await response.json();
+
+    // Formatar resposta
+    const formattedGroups = (groups || []).map(g => ({
+      id: g.id,
+      name: g.subject || g.name || 'Sem nome',
+      description: g.desc || '',
+      owner: g.owner,
+      creation: g.creation,
+      participants_count: g.size || 0
+    }));
+
+    console.log(`[WHATSAPP] ${formattedGroups.length} grupos encontrados`);
+    res.json(formattedGroups);
+
+  } catch (error) {
+    console.error('Erro ao listar grupos WhatsApp:', error);
     res.status(500).json({ error: error.message });
   }
 });

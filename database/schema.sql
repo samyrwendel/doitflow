@@ -517,6 +517,175 @@ INSERT OR IGNORE INTO schedule_message_templates (id, user_id, name, template_ty
     ('tpl_reminder_default', 'user_cleverson_001', 'Lembrete - Padrão', 'reminder',
      '{nome}, só passando para lembrar de registrar suas atividades do dia. É importante para o acompanhamento da equipe! 📋', 1);
 
+-- =============================================
+-- Sistema de Monitoramento de Gastos (Uber/99)
+-- =============================================
+
+-- Tabela de Grupos WhatsApp Monitorados
+CREATE TABLE IF NOT EXISTS expense_groups (
+    id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL,
+    group_jid TEXT NOT NULL UNIQUE, -- ID do grupo WhatsApp (ex: 123456789@g.us)
+    group_name TEXT NOT NULL,
+    device_id TEXT NOT NULL, -- Dispositivo WhatsApp usado para monitorar
+    is_active BOOLEAN DEFAULT 1,
+    initial_balance REAL DEFAULT 0, -- Saldo inicial do período
+    current_balance REAL DEFAULT 0, -- Saldo atual calculado
+    period_start DATE, -- Início do período de monitoramento
+    period_end DATE, -- Fim do período
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    metadata TEXT, -- JSON para configurações extras
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (device_id) REFERENCES whatsapp_devices(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_expense_groups_user_id ON expense_groups(user_id);
+CREATE INDEX IF NOT EXISTS idx_expense_groups_group_jid ON expense_groups(group_jid);
+
+CREATE TRIGGER IF NOT EXISTS update_expense_groups_updated_at
+    AFTER UPDATE ON expense_groups
+    BEGIN
+        UPDATE expense_groups SET updated_at = CURRENT_TIMESTAMP WHERE id = NEW.id;
+    END;
+
+-- Tabela de Corridas (Uber, 99, etc)
+CREATE TABLE IF NOT EXISTS expense_rides (
+    id TEXT PRIMARY KEY,
+    group_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+
+    -- Dados extraídos da imagem
+    provider TEXT NOT NULL, -- 'uber', '99', 'indriver', 'cabify', 'outro'
+    ride_date DATE NOT NULL,
+    ride_time TEXT, -- HH:MM
+    origin TEXT, -- Endereço de origem
+    destination TEXT, -- Endereço de destino
+    cost REAL NOT NULL, -- Valor da corrida
+    currency TEXT DEFAULT 'BRL',
+
+    -- Identificação de quem postou
+    sender_jid TEXT, -- JID de quem enviou a imagem
+    sender_name TEXT, -- Nome de quem enviou
+    team_member_id TEXT, -- Se vinculado a um membro da equipe
+
+    -- Imagem original
+    image_url TEXT, -- URL da imagem (se salva)
+    image_base64 TEXT, -- Base64 da imagem
+
+    -- Análise da IA
+    ai_extracted_data TEXT, -- JSON com todos os dados extraídos
+    confidence_score REAL, -- 0-1, confiança da extração
+    extraction_method TEXT DEFAULT 'gemini_vision', -- Método usado
+
+    -- Status
+    status TEXT DEFAULT 'pending', -- 'pending', 'approved', 'rejected', 'duplicate'
+    reviewed_at DATETIME,
+    reviewed_by TEXT, -- user_id de quem revisou
+
+    -- Metadados
+    message_id TEXT, -- ID da mensagem no WhatsApp
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    metadata TEXT,
+
+    FOREIGN KEY (group_id) REFERENCES expense_groups(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (team_member_id) REFERENCES team_members(id) ON DELETE SET NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_expense_rides_group_id ON expense_rides(group_id);
+CREATE INDEX IF NOT EXISTS idx_expense_rides_user_id ON expense_rides(user_id);
+CREATE INDEX IF NOT EXISTS idx_expense_rides_ride_date ON expense_rides(ride_date);
+CREATE INDEX IF NOT EXISTS idx_expense_rides_sender_jid ON expense_rides(sender_jid);
+CREATE INDEX IF NOT EXISTS idx_expense_rides_provider ON expense_rides(provider);
+CREATE INDEX IF NOT EXISTS idx_expense_rides_status ON expense_rides(status);
+
+CREATE TRIGGER IF NOT EXISTS update_expense_rides_updated_at
+    AFTER UPDATE ON expense_rides
+    BEGIN
+        UPDATE expense_rides SET updated_at = CURRENT_TIMESTAMP WHERE id = NEW.id;
+    END;
+
+-- Tabela de Registros de Saldo
+CREATE TABLE IF NOT EXISTS expense_balance_records (
+    id TEXT PRIMARY KEY,
+    group_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+
+    -- Dados extraídos da imagem
+    balance REAL NOT NULL, -- Saldo reportado
+    balance_date DATE NOT NULL,
+    balance_time TEXT, -- HH:MM
+    account_type TEXT, -- 'uber_cash', '99pay', 'corporativo', 'outro'
+
+    -- Identificação de quem postou
+    sender_jid TEXT,
+    sender_name TEXT,
+    team_member_id TEXT,
+
+    -- Imagem
+    image_url TEXT,
+    image_base64 TEXT,
+
+    -- Análise
+    ai_extracted_data TEXT,
+    confidence_score REAL,
+
+    -- Status
+    status TEXT DEFAULT 'pending',
+
+    -- Metadados
+    message_id TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    metadata TEXT,
+
+    FOREIGN KEY (group_id) REFERENCES expense_groups(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (team_member_id) REFERENCES team_members(id) ON DELETE SET NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_expense_balance_group_id ON expense_balance_records(group_id);
+CREATE INDEX IF NOT EXISTS idx_expense_balance_date ON expense_balance_records(balance_date);
+
+-- Tabela de Relatórios Gerados
+CREATE TABLE IF NOT EXISTS expense_reports (
+    id TEXT PRIMARY KEY,
+    group_id TEXT NOT NULL,
+    user_id TEXT NOT NULL,
+
+    -- Período do relatório
+    period_start DATE NOT NULL,
+    period_end DATE NOT NULL,
+
+    -- Totais
+    total_rides INTEGER DEFAULT 0,
+    total_cost REAL DEFAULT 0,
+    balance_start REAL DEFAULT 0,
+    balance_end REAL DEFAULT 0,
+
+    -- Detalhes por provedor
+    cost_by_provider TEXT, -- JSON: {"uber": 150.00, "99": 80.00}
+    rides_by_provider TEXT, -- JSON: {"uber": 5, "99": 3}
+    cost_by_member TEXT, -- JSON: {"João": 100.00, "Maria": 130.00}
+
+    -- Relatório em texto/markdown
+    report_content TEXT,
+
+    -- Status
+    status TEXT DEFAULT 'generated', -- 'generated', 'sent', 'archived'
+    sent_at DATETIME,
+
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    metadata TEXT,
+
+    FOREIGN KEY (group_id) REFERENCES expense_groups(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_expense_reports_group_id ON expense_reports(group_id);
+CREATE INDEX IF NOT EXISTS idx_expense_reports_period ON expense_reports(period_start, period_end);
+
 -- Inserir usuário padrão: cleverson.pompeu / 123456
 -- Hash bcrypt da senha '123456': $2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
 INSERT OR IGNORE INTO users (id, username, password_hash, full_name, is_admin) VALUES

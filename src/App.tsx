@@ -11,6 +11,7 @@ import { UsageStatsPanel } from './components/UsageStatsPanel'
 import { DevicesPanel } from './components/DevicesPanel'
 import { ConversationsPanel } from './components/ConversationsPanel'
 import { TeamSchedulerPanel } from './components/TeamSchedulerPanel'
+import { ExpenseTrackerPanel } from './components/ExpenseTrackerPanel'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { ThemeProvider, useTheme } from './contexts/ThemeContext'
 import { ChatMessage, RAGDocument, TranscriptionResult, TranscriptionProgress, SavedTranscription, Agent } from './types'
@@ -31,7 +32,7 @@ function MainApp() {
   })
   const [promptText, setPromptText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [expandedPanel, setExpandedPanel] = useState<string>('knowledge') // Base de conhecimento expandida por padrão
+  const [expandedPanel, setExpandedPanel] = useState<string>('') // Todos os painéis recolhidos por padrão
   
   // Estados para redimensionamento dragável (temporário)
   // const [leftPanelWidth, setLeftPanelWidth] = useState(50) // Porcentagem da largura
@@ -1240,6 +1241,16 @@ ${'='.repeat(80)}
               onToggle={handlePanelToggle}
             >
               <TeamSchedulerPanel authenticatedFetch={authenticatedFetch} />
+            </CollapsiblePanel>
+
+            <CollapsiblePanel
+              id="expenses"
+              title="Gastos Transporte"
+              icon={PANEL_ICONS.expenses}
+              isExpanded={expandedPanel === 'expenses'}
+              onToggle={handlePanelToggle}
+            >
+              <ExpenseTrackerPanel authenticatedFetch={authenticatedFetch} />
             </CollapsiblePanel>
           </div>
         </div>

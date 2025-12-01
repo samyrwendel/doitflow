@@ -1,4 +1,4 @@
-import { FiMic, FiEdit3, FiDatabase, FiChevronDown, FiChevronRight, FiSmartphone, FiUsers, FiCalendar } from 'react-icons/fi'
+import { FiMic, FiEdit3, FiDatabase, FiChevronDown, FiChevronRight, FiSmartphone, FiUsers, FiCalendar, FiDollarSign } from 'react-icons/fi'
 
 interface CollapsiblePanelProps {
   id: string
@@ -81,5 +81,6 @@ export const PANEL_ICONS = {
   rag: <FiDatabase className="w-4 h-4" />,
   devices: <FiSmartphone className="w-4 h-4" />,
   agents: <FiUsers className="w-4 h-4" />,
-  scheduler: <FiCalendar className="w-4 h-4" />
+  scheduler: <FiCalendar className="w-4 h-4" />,
+  expenses: <FiDollarSign className="w-4 h-4" />
 } as const
