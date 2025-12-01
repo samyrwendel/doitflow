@@ -4221,9 +4221,11 @@ app.get('/api/whatsapp-devices/:deviceId/groups', authMiddleware, async (req, re
     }
 
     const apiKey = device.api_key || evolutionConfig.apiKey;
-    const url = `${evolutionConfig.baseUrl}/group/fetchAllGroups/${deviceId}?getParticipants=false`;
+    // Usar device.name como instanceName para a Evolution API (não o ID interno)
+    const instanceName = device.name;
+    const url = `${evolutionConfig.baseUrl}/group/fetchAllGroups/${instanceName}?getParticipants=false`;
 
-    console.log(`[WHATSAPP] Buscando grupos do dispositivo ${deviceId}...`);
+    console.log(`[WHATSAPP] Buscando grupos da instância ${instanceName} (device: ${deviceId})...`);
 
     const response = await fetch(url, {
       method: 'GET',
