@@ -4215,7 +4215,7 @@ app.get('/api/whatsapp-devices/:deviceId/groups', authMiddleware, async (req, re
     }
 
     // Buscar URL e API key da Evolution API
-    const evolutionConfig = await getEvolutionApiConfig();
+    const evolutionConfig = await getEvolutionConfig();
     if (!evolutionConfig || !evolutionConfig.baseUrl) {
       return res.status(400).json({ error: 'Evolution API não configurada' });
     }
