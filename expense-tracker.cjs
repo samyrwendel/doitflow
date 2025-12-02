@@ -134,6 +134,20 @@ Se for um print de SALDO:
   // ============================================
 
   async createGroup(userId, data) {
+    // Validação de campos obrigatórios
+    if (!userId) {
+      throw new Error('userId é obrigatório');
+    }
+    if (!data.group_jid) {
+      throw new Error('group_jid é obrigatório - selecione um grupo WhatsApp');
+    }
+    if (!data.group_name) {
+      throw new Error('group_name é obrigatório');
+    }
+    if (!data.device_id) {
+      throw new Error('device_id é obrigatório - selecione um dispositivo');
+    }
+
     const id = `eg_${uuidv4()}`;
 
     await this.db.run(`
