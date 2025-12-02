@@ -47,36 +47,59 @@ class ExpenseTracker {
   // ============================================
 
   /**
-   * Analisa uma imagem de corrida (Uber/99) e extrai os dados
+   * Analisa uma imagem de corrida (Uber/99) ou comprovante PIX e extrai os dados
    */
   async analyzeRideImage(imageBase64) {
     if (!this.visionModel) {
       throw new Error('Gemini Vision não configurado - verifique GOOGLE_API_KEY');
     }
 
-    const prompt = `Analise esta imagem de um print de aplicativo de transporte (Uber, 99, inDriver, etc).
+    const prompt = `Analise esta imagem. Pode ser um dos seguintes tipos:
 
-EXTRAIA AS SEGUINTES INFORMAÇÕES (se visíveis):
+1. **PRINT DE CORRIDA** (Uber, 99, inDriver, etc)
+2. **PRINT DE SALDO** (saldo da conta Uber Cash, 99Pay, etc)
+3. **COMPROVANTE DE PIX** (transferência bancária para recarga de transporte)
 
-1. **Provedor**: Qual app? (uber, 99, indriver, cabify, outro)
-2. **Valor da corrida**: Valor total em reais (apenas números, ex: 25.90)
-3. **Data**: Data da corrida (formato: YYYY-MM-DD)
-4. **Hora**: Horário (formato: HH:MM)
-5. **Origem**: Endereço ou local de partida
-6. **Destino**: Endereço ou local de chegada
-7. **Distância**: Se visível (em km)
-8. **Duração**: Se visível (em minutos)
-9. **Tipo de corrida**: UberX, 99Pop, etc
-10. **Forma de pagamento**: Se visível
+=== SE FOR PRINT DE CORRIDA ===
+Extraia:
+- Provedor: uber, 99, indriver, cabify, outro
+- Valor da corrida (apenas número, ex: 25.90)
+- Data (YYYY-MM-DD)
+- Hora (HH:MM)
+- Origem e Destino
+- Distância (km) e Duração (minutos)
+- Tipo de corrida (UberX, 99Pop, etc)
+- Forma de pagamento
+
+=== SE FOR PRINT DE SALDO ===
+Extraia:
+- Provedor: uber, 99
+- Saldo disponível
+- Data
+
+=== SE FOR COMPROVANTE DE PIX ===
+Identifique:
+- Remetente (quem enviou): nome e banco
+- Destinatário (quem recebeu): nome
+- Valor transferido
+- Data e hora
+- Chave PIX (se visível)
+
+REGRA ESPECIAL: Se o PIX for de:
+- Alarmstore, Banco Cora, ou Samyr Almeida
+- Para: Warrinson (ou variações)
+- Isso significa RECARGA DE SALDO para transporte
 
 IMPORTANTE:
-- Se não conseguir identificar algum campo, retorne null
-- Para o valor, extraia APENAS o número (sem "R$")
-- Se for um print de SALDO/CRÉDITOS (não uma corrida), indique no campo "tipo": "saldo"
+- Se algum campo não for identificável, retorne null
+- Se tiver BAIXA CONFIANÇA em algum dado, indique no campo "duvidas"
+- Para valores, extraia APENAS números (sem "R$")
 
-Responda APENAS com um JSON válido no formato:
+Responda APENAS com um JSON válido:
+
+Se for CORRIDA:
 {
-  "tipo": "corrida" ou "saldo",
+  "tipo": "corrida",
   "provedor": "uber" | "99" | "indriver" | "cabify" | "outro",
   "valor": 25.90,
   "data": "2024-12-01",
@@ -87,18 +110,36 @@ Responda APENAS com um JSON válido no formato:
   "duracao_min": 15,
   "tipo_corrida": "UberX",
   "pagamento": "Uber Cash",
-  "saldo_disponivel": null,
-  "confianca": 0.95
+  "confianca": 0.95,
+  "duvidas": null
 }
 
-Se for um print de SALDO:
+Se for SALDO:
 {
   "tipo": "saldo",
   "provedor": "uber" | "99",
   "saldo_disponivel": 150.00,
   "data": "2024-12-01",
-  "confianca": 0.90
-}`;
+  "confianca": 0.90,
+  "duvidas": null
+}
+
+Se for PIX/RECARGA:
+{
+  "tipo": "pix_recarga",
+  "remetente": "Alarmstore - Banco Cora",
+  "destinatario": "Warrinson",
+  "valor": 200.00,
+  "data": "2024-12-01",
+  "hora": "10:30",
+  "chave_pix": "email@example.com",
+  "eh_recarga_transporte": true,
+  "confianca": 0.95,
+  "duvidas": null
+}
+
+Se houver DÚVIDAS (baixa confiança), preencha o campo "duvidas" com array de strings descrevendo o que não ficou claro:
+"duvidas": ["Valor pode ser 25.90 ou 26.90", "Data não está clara"]`;
 
     try {
       // Preparar a imagem para o Gemini
@@ -221,16 +262,73 @@ Se for um print de SALDO:
   // GERENCIAMENTO DE CORRIDAS
   // ============================================
 
+  /**
+   * Verifica se já existe uma corrida similar (possível duplicada)
+   */
+  async checkDuplicate(groupId, cost, rideDate, provider) {
+    // Procura corridas com mesmo valor, data e provedor
+    const similar = await this.db.get(`
+      SELECT * FROM expense_rides
+      WHERE group_id = ?
+      AND cost = ?
+      AND ride_date = ?
+      AND provider = ?
+      AND status != 'duplicate'
+      ORDER BY created_at DESC
+      LIMIT 1
+    `, [groupId, cost, rideDate, provider]);
+
+    if (similar) {
+      return {
+        isDuplicate: true,
+        existingRide: similar,
+        message: `Possível duplicata: Corrida ${provider.toUpperCase()} de R$ ${cost.toFixed(2)} em ${rideDate} já existe`
+      };
+    }
+
+    // Verifica também corridas com valor similar (±2 reais) no mesmo dia
+    const almostSimilar = await this.db.get(`
+      SELECT * FROM expense_rides
+      WHERE group_id = ?
+      AND ABS(cost - ?) <= 2
+      AND ride_date = ?
+      AND status != 'duplicate'
+      ORDER BY created_at DESC
+      LIMIT 1
+    `, [groupId, cost, rideDate]);
+
+    if (almostSimilar && almostSimilar.id !== similar?.id) {
+      return {
+        isDuplicate: false,
+        possibleDuplicate: true,
+        existingRide: almostSimilar,
+        message: `Atenção: Corrida similar encontrada (R$ ${almostSimilar.cost.toFixed(2)} vs R$ ${cost.toFixed(2)}) no mesmo dia`
+      };
+    }
+
+    return { isDuplicate: false, possibleDuplicate: false };
+  }
+
   async addRide(groupId, userId, data, imageBase64 = null) {
     const id = `ride_${uuidv4()}`;
 
     // Se tiver imagem, analisar automaticamente
     let aiExtractedData = data.ai_extracted_data;
     let confidenceScore = data.confidence_score || 0;
+    let duvidas = null;
+    let needsConfirmation = false;
 
     if (imageBase64 && !aiExtractedData) {
       try {
         const analysis = await this.analyzeRideImage(imageBase64);
+
+        // Capturar dúvidas da IA
+        duvidas = analysis.duvidas;
+        if (duvidas && duvidas.length > 0) {
+          needsConfirmation = true;
+          console.log('[EXPENSE-TRACKER] IA tem dúvidas:', duvidas);
+        }
+
         if (analysis.tipo === 'corrida') {
           aiExtractedData = JSON.stringify(analysis);
           confidenceScore = analysis.confianca || 0.8;
@@ -242,6 +340,7 @@ Se for um print de SALDO:
           data.ride_time = data.ride_time || analysis.hora;
           data.origin = data.origin || analysis.origem;
           data.destination = data.destination || analysis.destino;
+
         } else if (analysis.tipo === 'saldo') {
           // É um print de saldo, não de corrida
           return this.addBalanceRecord(groupId, userId, {
@@ -249,12 +348,67 @@ Se for um print de SALDO:
             balance_date: analysis.data || new Date().toISOString().split('T')[0],
             account_type: analysis.provedor === 'uber' ? 'uber_cash' : '99pay',
             sender_jid: data.sender_jid,
-            sender_name: data.sender_name
+            sender_name: data.sender_name,
+            duvidas: duvidas
+          }, imageBase64);
+
+        } else if (analysis.tipo === 'pix_recarga') {
+          // É um comprovante de PIX - tratar como recarga de saldo
+          console.log('[EXPENSE-TRACKER] PIX detectado como recarga de transporte');
+
+          // Verificar duplicidade do PIX
+          const pixDuplicate = await this.checkPixDuplicate(groupId, analysis.valor, analysis.data);
+          if (pixDuplicate.isDuplicate) {
+            return {
+              type: 'duplicate_pix',
+              message: pixDuplicate.message,
+              existing: pixDuplicate.existingRecord
+            };
+          }
+
+          return this.addBalanceRecord(groupId, userId, {
+            balance: analysis.valor,
+            balance_date: analysis.data || new Date().toISOString().split('T')[0],
+            balance_time: analysis.hora,
+            account_type: 'pix_recarga',
+            sender_jid: data.sender_jid,
+            sender_name: data.sender_name,
+            pix_remetente: analysis.remetente,
+            pix_destinatario: analysis.destinatario,
+            is_pix_recarga: true,
+            duvidas: duvidas
           }, imageBase64);
         }
       } catch (error) {
         console.error('[EXPENSE-TRACKER] Erro na análise automática:', error);
       }
+    }
+
+    // Verificar duplicidade de corrida
+    const duplicateCheck = await this.checkDuplicate(
+      groupId,
+      data.cost || 0,
+      data.ride_date || new Date().toISOString().split('T')[0],
+      data.provider || 'outro'
+    );
+
+    if (duplicateCheck.isDuplicate) {
+      console.log('[EXPENSE-TRACKER] Corrida duplicada detectada:', duplicateCheck.message);
+      return {
+        type: 'duplicate',
+        message: duplicateCheck.message,
+        existingRide: duplicateCheck.existingRide,
+        needsConfirmation: true
+      };
+    }
+
+    // Se houver dúvidas ou possível duplicata, marcar para confirmação
+    let status = RIDE_STATUS.PENDING;
+    if (duplicateCheck.possibleDuplicate) {
+      needsConfirmation = true;
+      aiExtractedData = aiExtractedData ? JSON.parse(aiExtractedData) : {};
+      aiExtractedData.possibleDuplicate = duplicateCheck.message;
+      aiExtractedData = JSON.stringify(aiExtractedData);
     }
 
     await this.db.run(`
@@ -282,7 +436,7 @@ Se for um print de SALDO:
       aiExtractedData,
       confidenceScore,
       data.message_id,
-      RIDE_STATUS.PENDING
+      status
     ]);
 
     // Atualizar saldo do grupo
@@ -293,7 +447,40 @@ Se for um print de SALDO:
       console.error('[EXPENSE-TRACKER] Erro ao atualizar RAG após nova corrida:', err);
     });
 
-    return this.getRide(id);
+    const ride = await this.getRide(id);
+
+    // Adicionar informações extras ao retorno
+    return {
+      ...ride,
+      needsConfirmation,
+      duvidas,
+      duplicateWarning: duplicateCheck.possibleDuplicate ? duplicateCheck.message : null
+    };
+  }
+
+  /**
+   * Verifica se já existe um registro de PIX com mesmo valor e data
+   */
+  async checkPixDuplicate(groupId, valor, data) {
+    const existing = await this.db.get(`
+      SELECT * FROM expense_balance_records
+      WHERE group_id = ?
+      AND balance = ?
+      AND balance_date = ?
+      AND account_type = 'pix_recarga'
+      ORDER BY created_at DESC
+      LIMIT 1
+    `, [groupId, valor, data]);
+
+    if (existing) {
+      return {
+        isDuplicate: true,
+        existingRecord: existing,
+        message: `PIX duplicado: Recarga de R$ ${valor.toFixed(2)} em ${data} já foi registrada`
+      };
+    }
+
+    return { isDuplicate: false };
   }
 
   async getRide(rideId) {
@@ -791,6 +978,48 @@ Se for um print de SALDO:
   // PROCESSAMENTO DE WEBHOOK (MENSAGENS DO GRUPO)
   // ============================================
 
+  /**
+   * Configura a função de envio de mensagem para o grupo (injetada pelo servidor)
+   */
+  setSendMessageFunction(sendMessageFn) {
+    this.sendGroupMessage = sendMessageFn;
+  }
+
+  /**
+   * Envia uma pergunta de confirmação no grupo
+   */
+  async askConfirmation(groupJid, senderName, questions, context) {
+    if (!this.sendGroupMessage) {
+      console.log('[EXPENSE-TRACKER] Função de envio de mensagem não configurada');
+      return;
+    }
+
+    let message = `@${senderName}, preciso confirmar algumas informações:\n\n`;
+
+    if (questions && questions.length > 0) {
+      questions.forEach((q, i) => {
+        message += `❓ ${q}\n`;
+      });
+    }
+
+    if (context) {
+      message += `\n📋 Dados identificados:\n`;
+      if (context.tipo) message += `• Tipo: ${context.tipo}\n`;
+      if (context.valor) message += `• Valor: R$ ${context.valor.toFixed(2)}\n`;
+      if (context.data) message += `• Data: ${context.data}\n`;
+      if (context.provedor) message += `• App: ${context.provedor.toUpperCase()}\n`;
+    }
+
+    message += `\nPor favor, responda para confirmar ou corrija os dados.`;
+
+    try {
+      await this.sendGroupMessage(groupJid, message);
+      console.log('[EXPENSE-TRACKER] Pergunta de confirmação enviada para o grupo');
+    } catch (error) {
+      console.error('[EXPENSE-TRACKER] Erro ao enviar pergunta:', error);
+    }
+  }
+
   async processGroupMessage(message) {
     // Verificar se o grupo está sendo monitorado
     const group = await this.getGroupByJid(message.group_jid);
@@ -814,10 +1043,27 @@ Se for um print de SALDO:
     try {
       // Analisar a imagem
       const analysis = await this.analyzeRideImage(imageBase64);
+      console.log('[EXPENSE-TRACKER] Análise da imagem:', analysis.tipo);
 
+      // Verificar se há dúvidas e perguntar ao usuário
+      if (analysis.duvidas && analysis.duvidas.length > 0) {
+        await this.askConfirmation(
+          message.group_jid,
+          message.sender_name || 'Usuário',
+          analysis.duvidas,
+          {
+            tipo: analysis.tipo,
+            valor: analysis.valor || analysis.saldo_disponivel,
+            data: analysis.data,
+            provedor: analysis.provedor
+          }
+        );
+      }
+
+      // Processar de acordo com o tipo
       if (analysis.tipo === 'corrida' && analysis.valor) {
         // Adicionar corrida
-        return await this.addRide(group.id, group.user_id, {
+        const result = await this.addRide(group.id, group.user_id, {
           provider: analysis.provedor,
           cost: analysis.valor,
           ride_date: analysis.data,
@@ -830,9 +1076,30 @@ Se for um print de SALDO:
           ai_extracted_data: JSON.stringify(analysis),
           confidence_score: analysis.confianca
         }, imageBase64);
+
+        // Se for duplicata, avisar no grupo
+        if (result.type === 'duplicate') {
+          await this.askConfirmation(
+            message.group_jid,
+            message.sender_name || 'Usuário',
+            [`⚠️ Essa corrida parece já ter sido registrada. É uma corrida diferente?`],
+            { tipo: 'corrida', valor: analysis.valor, data: analysis.data, provedor: analysis.provedor }
+          );
+        } else if (result.duplicateWarning) {
+          // Aviso de possível duplicata
+          await this.askConfirmation(
+            message.group_jid,
+            message.sender_name || 'Usuário',
+            [result.duplicateWarning],
+            { tipo: 'corrida', valor: analysis.valor, data: analysis.data, provedor: analysis.provedor }
+          );
+        }
+
+        return result;
+
       } else if (analysis.tipo === 'saldo' && analysis.saldo_disponivel) {
         // Adicionar registro de saldo
-        return await this.addBalanceRecord(group.id, group.user_id, {
+        const result = await this.addBalanceRecord(group.id, group.user_id, {
           balance: analysis.saldo_disponivel,
           balance_date: analysis.data || new Date().toISOString().split('T')[0],
           account_type: analysis.provedor === 'uber' ? 'uber_cash' : '99pay',
@@ -840,6 +1107,51 @@ Se for um print de SALDO:
           sender_name: message.sender_name,
           message_id: message.message_id
         }, imageBase64);
+
+        return result;
+
+      } else if (analysis.tipo === 'pix_recarga' && analysis.valor) {
+        // Comprovante de PIX - registrar como recarga
+        console.log('[EXPENSE-TRACKER] PIX de recarga detectado via webhook');
+
+        // Verificar duplicidade do PIX
+        const pixDuplicate = await this.checkPixDuplicate(group.id, analysis.valor, analysis.data);
+        if (pixDuplicate.isDuplicate) {
+          await this.askConfirmation(
+            message.group_jid,
+            message.sender_name || 'Usuário',
+            [`⚠️ Este PIX parece já ter sido registrado. R$ ${analysis.valor.toFixed(2)} em ${analysis.data}`],
+            null
+          );
+          return { type: 'duplicate_pix', message: pixDuplicate.message };
+        }
+
+        // Registrar como recarga de saldo
+        const result = await this.addBalanceRecord(group.id, group.user_id, {
+          balance: analysis.valor,
+          balance_date: analysis.data || new Date().toISOString().split('T')[0],
+          balance_time: analysis.hora,
+          account_type: 'pix_recarga',
+          sender_jid: message.sender_jid,
+          sender_name: message.sender_name,
+          message_id: message.message_id,
+          pix_remetente: analysis.remetente,
+          pix_destinatario: analysis.destinatario
+        }, imageBase64);
+
+        // Confirmar no grupo que a recarga foi registrada
+        if (this.sendGroupMessage && analysis.eh_recarga_transporte) {
+          try {
+            await this.sendGroupMessage(
+              message.group_jid,
+              `✅ Recarga registrada!\n💰 Valor: R$ ${analysis.valor.toFixed(2)}\n📤 De: ${analysis.remetente || 'N/A'}\n📥 Para: ${analysis.destinatario || 'N/A'}\n📅 Data: ${analysis.data || 'Hoje'}`
+            );
+          } catch (e) {
+            console.error('[EXPENSE-TRACKER] Erro ao confirmar recarga:', e);
+          }
+        }
+
+        return result;
       }
     } catch (error) {
       console.error('[EXPENSE-TRACKER] Erro ao processar mensagem do grupo:', error);
